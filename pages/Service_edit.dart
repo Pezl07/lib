@@ -39,154 +39,141 @@ class _ServiceEditPage extends State<ServiceEditPage> {
         ],
       ),
       body: ListView(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'PD Consult',
-                style: TextStyle(fontSize: 40),
-              ),
-            ],
+        children: <Widget>[
+          Center(
+            child: Text(
+              'Service Name',
+              style: TextStyle(fontSize: 40),
+            ),
           ),
-          Divider(
+          const Divider(
             color: Colors.black,
           ),
-          Row(
-            children: [
-              Text(
-                'IMPORT',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, color: Colors.grey),
-              ),
-            ],
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'IMPORT',
+              style: TextStyle(fontSize: 20, color: Colors.grey),
+            ),
           ),
-          Divider(
+          const Divider(
             color: Colors.black,
           ),
-          Row(
-            children: [
-              Text(
-                'Importer',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'Importer',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: Text(
+              'Importer',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
           ),
-          Divider(),
-          Row(
-            children: [
-              Text(
-                'Imported car',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
+          const Divider(),
+          ListTile(
+            onTap: () {},
+            title: Text('Imported Car', style: TextStyle(fontSize: 16)),
+            trailing: Text('Imported car',
+                style: TextStyle(fontSize: 16, color: Colors.grey)),
           ),
-          Divider(),
-          Row(
-            children: [
-              Text(
-                'Arrival data',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
+          const Divider(),
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'Arrival Date',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: Text(
+              'arrival date',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
           ),
-          Divider(),
-          Row(
-            children: [
-              Text(
-                'Cut-off data',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
+          const Divider(),
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'Cut-off Date',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: Text(
+              'cute-off date',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
           ),
-          Divider(
+          const Divider(
             color: Colors.black,
           ),
-          Row(
-            children: [
-              Text(
-                'EXPORT',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, color: Colors.grey),
-              ),
-            ],
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'EXPORT',
+              style: TextStyle(fontSize: 20, color: Colors.grey),
+            ),
           ),
-          Divider(
+          const Divider(
             color: Colors.black,
           ),
-          Row(
-            children: [
-              Text(
-                'Exporter',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'Exporter',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: Text(
+              'exporter',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
           ),
-          Divider(),
-          Row(
-            children: [
-              Text(
-                'Exported car',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
+          const Divider(),
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'Exported Car',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: Text(
+              'exported car',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
           ),
-          Divider(
+          const Divider(
             color: Colors.black,
           ),
-          Row(
-            children: [
-              Text(
-                'LOCATION',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, color: Colors.grey),
-              ),
-            ],
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'LOCATION',
+              style: TextStyle(fontSize: 20, color: Colors.grey),
+            ),
           ),
-          Divider(
+          const Divider(
             color: Colors.black,
           ),
-          Row(
-            children: [
-              Text(
-                'Arrivals location',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'Arrivals Location',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: Text(
+              'Bankok',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
           ),
-          Divider(),
-          Row(
-            children: [
-              Text(
-                'Departure location',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
+          const Divider(),
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'Departure Location',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: Text(
+              'Bangsean',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
           ),
-          Divider(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.orange, // background
-                    onPrimary: Colors.white, // foreground
-                  ),
-                  child: Text('CONFIRM'),
-                ),
-              ),
-            ],
-          )
+          const Divider(),
         ],
       ),
     );
