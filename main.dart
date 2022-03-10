@@ -1,7 +1,6 @@
+import 'package:cdms_flutter/pages/Service_show.dart';
+import 'package:cdms_flutter/pages/add.dart';
 import 'package:flutter/material.dart';
-import 'package:todolist/pages/add.dart';
-
-
 
 void main() {
   runApp(MyApp());
@@ -14,11 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: AddPage(),
+      home: ServiceShowPage(),
       title: "add",
       debugShowCheckedModeBanner: false,
     );
   }
 }
-
-
