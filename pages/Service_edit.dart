@@ -40,10 +40,15 @@ class _ServiceEditPage extends State<ServiceEditPage> {
       ),
       body: ListView(
         children: <Widget>[
-          Center(
-            child: Text(
+          ListTile(
+            onTap: () {},
+            title: Text(
               'Service Name',
-              style: TextStyle(fontSize: 40),
+              style: TextStyle(fontSize: 30),
+            ),
+            trailing: Text(
+              'PD Consult',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
           const Divider(
