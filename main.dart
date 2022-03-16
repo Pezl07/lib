@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:layout/pages/home.dart';
-import 'package:layout/pages/showlist.dart';
+import 'package:layout/pages/Container_showlist.dart';
+import 'package:layout/pages/Service_showlist.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,7 +28,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
   final tabs = [
-    ShowlistPage(),
+    ServiceShowListPage(),
+    ContainerShowListPage(),
   ];
 
   // get Table => null;

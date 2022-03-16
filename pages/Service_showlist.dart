@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-// import 'package:layout/pages/detail.dart';
-// import 'package:layout/pages/home.dart';
 
-class ShowlistPage extends StatefulWidget {
-  const ShowlistPage({Key? key}) : super(key: key);
+class ServiceShowListPage extends StatefulWidget {
+  const ServiceShowListPage({Key? key}) : super(key: key);
 
   @override
-  State<ShowlistPage> createState() => _ShowlistPageState();
+  State<ServiceShowListPage> createState() => _ServiceShowListPageState();
 }
 
-class _ShowlistPageState extends State<ShowlistPage> {
+class _ServiceShowListPageState extends State<ServiceShowListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
