@@ -1,7 +1,7 @@
 import 'package:accordion/accordion.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:async';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 
 class AddPage extends StatefulWidget {
   //const AddPage({ Key? key }) : super(key: key);
@@ -27,7 +27,7 @@ class _AddPageState extends State<AddPage> {
           icon: Icon(Icons.arrow_back_ios),
         ),
         title: Center(
-          child: Text('SERVICE'),
+          child: Text('CONTAINER'),
         ),
         actions: <Widget>[
           TextButton(
@@ -42,7 +42,7 @@ class _AddPageState extends State<AddPage> {
       ),
       body: ListView(
         children: [
-          //Import
+          //Container information
           Accordion(
               maxOpenSections: 1,
               headerBackgroundColorOpened: Colors.black54,
@@ -52,40 +52,17 @@ class _AddPageState extends State<AddPage> {
                 AccordionSection(
                   isOpen: false,
                   // leftIcon: const Icon(Icons.computer, color: Colors.white),
-                  header: Text('Import', style: _headerStyle ,),
-                  
+                  header: Text(
+                    'Container information',
+                    style: _headerStyle,
+                  ),
+
                   content: Column(
                     children: [
                       Divider(),
-                      Column(
-                        children: [
-                          TextField(
-                            decoration: InputDecoration(
-                                labelText: 'Import',
-                                border: OutlineInputBorder()),
-                            // textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 15),
-                          ),
-                          // ],
-                          // ),
-                          // Row(
-                          // children: [
-                          // Text('test'
-                          //   // decoration: new InputDecoration(
-                          //   //     border: InputBorder.none,
-                          //   //     focusedBorder: InputBorder.none,
-                          //   //     contentPadding: EdgeInsets.only(
-                          //   //         left: 15, bottom: 11, top: 11, right: 15),
-                          //   //     hintText: 'Subject'),
-                          //   // textAlign: TextAlign.center,
-                          //   // style: TextStyle(fontSize: 18, color: Colors.grey),
-                          // ),
-                        ],
-                      ),
-                      Divider(),
                       TextField(
                         decoration: InputDecoration(
-                            labelText: 'Imported car',
+                            labelText: 'Container number',
                             border: OutlineInputBorder()),
                         // textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 15),
@@ -93,25 +70,16 @@ class _AddPageState extends State<AddPage> {
                       Divider(),
                       TextField(
                         decoration: InputDecoration(
-                            labelText: 'Arrival data',
+                            labelText: 'Container status',
                             border: OutlineInputBorder()),
                         // textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 15),
                       ),
-                      Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Cut-off date',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      Divider(),
                     ],
                   ),
                 ),
               ]),
-          //Export
+          //Weight
           Accordion(
               maxOpenSections: 1,
               headerBackgroundColorOpened: Colors.black54,
@@ -121,13 +89,13 @@ class _AddPageState extends State<AddPage> {
                 AccordionSection(
                   isOpen: false,
                   // leftIcon: const Icon(Icons.computer, color: Colors.white),
-                  header: Text('Export', style: _headerStyle),
+                  header: Text('Weight', style: _headerStyle),
                   content: Column(
                     children: [
                       Divider(),
                       TextField(
                         decoration: InputDecoration(
-                            labelText: 'Exporter',
+                            labelText: 'Max weight (t)',
                             border: OutlineInputBorder()),
                         // textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 15),
@@ -135,17 +103,32 @@ class _AddPageState extends State<AddPage> {
                       Divider(),
                       TextField(
                         decoration: InputDecoration(
-                            labelText: 'Exported car',
+                            labelText: 'Tare weight (t)',
                             border: OutlineInputBorder()),
                         // textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 15),
                       ),
                       Divider(),
+                      TextField(
+                        decoration: InputDecoration(
+                            labelText: 'Net weight (t)',
+                            border: OutlineInputBorder()),
+                        // textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      Divider(),
+                      TextField(
+                        decoration: InputDecoration(
+                            labelText: 'Cube (CBM)',
+                            border: OutlineInputBorder()),
+                        // textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ],
                   ),
                 ),
               ]),
-          //Location
+          //Size
           Accordion(
               maxOpenSections: 1,
               headerBackgroundColorOpened: Colors.black54,
@@ -155,12 +138,12 @@ class _AddPageState extends State<AddPage> {
                 AccordionSection(
                   isOpen: false,
                   // leftIcon: const Icon(Icons.computer, color: Colors.white),
-                  header: Text('Location', style: _headerStyle),
+                  header: Text('Size', style: _headerStyle),
                   content: Column(
                     children: [
                       TextField(
                         decoration: InputDecoration(
-                            labelText: 'Arrivals location',
+                            labelText: 'Container size',
                             border: OutlineInputBorder()),
                         // textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 15),
@@ -168,12 +151,27 @@ class _AddPageState extends State<AddPage> {
                       Divider(),
                       TextField(
                         decoration: InputDecoration(
-                            labelText: 'Departure location',
+                            labelText: 'Width (m)',
                             border: OutlineInputBorder()),
                         // textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 15),
                       ),
                       Divider(),
+                      TextField(
+                        decoration: InputDecoration(
+                            labelText: 'Length (m)',
+                            border: OutlineInputBorder()),
+                        // textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      Divider(),
+                      TextField(
+                        decoration: InputDecoration(
+                            labelText: 'Height (m)',
+                            border: OutlineInputBorder()),
+                        // textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ],
                   ),
                 ),
