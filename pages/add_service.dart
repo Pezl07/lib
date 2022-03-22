@@ -2,6 +2,7 @@ import 'package:accordion/accordion.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:date_time_picker/date_time_picker.dart';
+import 'package:flutter/services.dart';
 
 String? selectedValue;
 List<String> items = [
@@ -17,6 +18,37 @@ List<String> items_import = [
   'นายสมดี อยู่เย็น',
   'นายสมชาย อยู่เย็น',
   'นายสมหมาย อยู่เย็น',
+];
+
+String? selectedValue_select;
+List<String> items_select = [
+  'Open-top',
+  'ISO Tank',
+  'Reefer Container',
+  'Dry Container',
+];
+
+String? selectedValue_agent;
+List<String> items_agent = [
+  'PD Consult',
+  'คิวคิว โลจิสต์',
+  'ไอวีซอฟต์',
+];
+
+String? selectedValue_export;
+List<String> items_export = [
+  'วิรัตน์ สากร',
+  'ธนาธิป บุญเนตร',
+  'ชุติพนต์ เติมสิริสุขสิน',
+  'บารมี ชมชื่น',
+];
+
+String? selectedValue_export_car;
+List<String> items_export_car = [
+  'คันที่ 1 ทะเบียน กอ 342',
+  'คันที่ 2 ทะเบียน กอ 345',
+  'คันที่ 3 ทะเบียน กอ 442',
+  'คันที่ 4 ทะเบียน กอ 355',
 ];
 
 class AddServicePage extends StatefulWidget {
@@ -178,9 +210,96 @@ class _AddServicePageState extends State<AddServicePage> {
                         },
                       ),
                       Divider(),
+                      Center(
+                        child: Container(
+                          height: 40,
+                          width: 460,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2(
+                              hint: Text(
+                                'Container type',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),
+                              items: items_select
+                                  .map((item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ))
+                                  .toList(),
+                              value: selectedValue_select,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue_select = value as String;
+                                });
+                              },
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              itemHeight: 40,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Divider(),
+                      Center(
+                        child: Container(
+                          height: 40,
+                          width: 460,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2(
+                              hint: Text(
+                                'Select agent',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),
+                              items: items_agent
+                                  .map((item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ))
+                                  .toList(),
+                              value: selectedValue_agent,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue_agent = value as String;
+                                });
+                              },
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              itemHeight: 40,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Divider(),
+                      TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Current Weight',
+                          
+                        ),
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+keyboardType: TextInputType.number,
+                        // textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 14),
+                      ),
                     ],
                   ),
                 ),
+
                 //Export
                 AccordionSection(
                   isOpen: false,
@@ -189,22 +308,81 @@ class _AddServicePageState extends State<AddServicePage> {
                   content: Column(
                     children: [
                       Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Exporter',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14),
+                      Center(
+                        child: Container(
+                          height: 40,
+                          width: 460,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2(
+                              hint: Text(
+                                'Exporter',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),
+                              items: items_export
+                                  .map((item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ))
+                                  .toList(),
+                              value: selectedValue_export,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue_export = value as String;
+                                });
+                              },
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              itemHeight: 40,
+                            ),
+                          ),
+                        ),
                       ),
                       Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Exported car',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14),
+                      Center(
+                        child: Container(
+                          height: 40,
+                          width: 460,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2(
+                              hint: Text(
+                                'Exporter car',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),
+                              items: items_export_car
+                                  .map((item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ))
+                                  .toList(),
+                              value: selectedValue_export_car,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue_export_car = value as String;
+                                });
+                              },
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              itemHeight: 40,
+                            ),
+                          ),
+                        ),
                       ),
-                      Divider(),
                     ],
                   ),
                 ),

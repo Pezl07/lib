@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 
+String? selectedValue_size;
+List<String> items_size = [
+  '20 Feet',
+  '30 Feet',
+  '40 Feet',
+  '50 Feet',
+];
+
 class AddContainerPage extends StatefulWidget {
   //const AddContainerPage({ Key? key }) : super(key: key);
 
@@ -67,14 +75,6 @@ class _AddContainerPageState extends State<AddContainerPage> {
                         // textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 14),
                       ),
-                      Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Container status',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14),
-                      ),
                     ],
                   ),
                 ),
@@ -127,38 +127,62 @@ class _AddContainerPageState extends State<AddContainerPage> {
                   header: Text('Size', style: _headerStyle),
                   content: Column(
                     children: [
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Container size',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
+                      Divider(),
+                      Center(
+                        child: Container(
+                          height: 40,
+                          width: 460,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2(
+                              hint: Text(
+                                'Container size',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),
+                              items: items_size
+                                  .map((item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ))
+                                  .toList(),
+                              value: selectedValue_size,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue_size = value as String;
+                                });
+                              },
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              itemHeight: 40,
+                            ),
+                          ),
+                        ),
+                      ),
+                     
+                      Divider(),
+                      Text('Width (m)',
                         style: TextStyle(fontSize: 14),
                       ),
                       Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Width (m)',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
+                      Text('Length (m)',
                         style: TextStyle(fontSize: 14),
                       ),
                       Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Length (m)',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
+                      Text('Height (m)',
                         style: TextStyle(fontSize: 14),
+                        
                       ),
                       Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Height (m)',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14),
-                      ),
+
                     ],
+                  
                   ),
                 ),
               ]),
