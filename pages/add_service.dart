@@ -79,7 +79,7 @@ class _AddServicePageState extends State<AddServicePage> {
                       Center(
                         child: Container(
                           height: 40,
-                          width: 350,
+                          width: 460,
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton2(
                               hint: Text(
@@ -117,7 +117,7 @@ class _AddServicePageState extends State<AddServicePage> {
                       Center(
                         child: Container(
                           height: 40,
-                          width: 350,
+                          width: 460,
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton2(
                               hint: Text(
@@ -194,7 +194,7 @@ class _AddServicePageState extends State<AddServicePage> {
                             labelText: 'Exporter',
                             border: OutlineInputBorder()),
                         // textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(fontSize: 14),
                       ),
                       Divider(),
                       TextField(
@@ -202,7 +202,7 @@ class _AddServicePageState extends State<AddServicePage> {
                             labelText: 'Exported car',
                             border: OutlineInputBorder()),
                         // textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(fontSize: 14),
                       ),
                       Divider(),
                     ],
@@ -220,7 +220,7 @@ class _AddServicePageState extends State<AddServicePage> {
                             labelText: 'Arrivals location',
                             border: OutlineInputBorder()),
                         // textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(fontSize: 14),
                       ),
                       Divider(),
                       TextField(
@@ -228,7 +228,7 @@ class _AddServicePageState extends State<AddServicePage> {
                             labelText: 'Departure location',
                             border: OutlineInputBorder()),
                         // textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(fontSize: 14),
                       ),
                       Divider(),
                     ],
