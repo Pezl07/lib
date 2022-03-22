@@ -65,45 +65,54 @@ class _ServiceEditPage extends State<ServiceEditPage> {
             color: Colors.black,
           ),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Importer',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'Importer',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-          ),
-          const Divider(),
-          ListTile(
-            onTap: () {},
-            title: Text('Imported Car', style: TextStyle(fontSize: 16)),
-            trailing: Text('Imported car',
-                style: TextStyle(fontSize: 16, color: Colors.grey)),
-          ),
-          const Divider(),
-          ListTile(
-            onTap: () {},
-            title: Text(
-              'Arrival Date',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'arrival date',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Import')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Cut-off Date',
-              style: TextStyle(fontSize: 16),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Imported Car')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
-            trailing: Text(
-              'cute-off date',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          const Divider(),
+          ListTile(
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Arrival Date')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
+            ),
+          ),
+          const Divider(),
+          ListTile(
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Cut-off Date')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(
@@ -120,26 +129,28 @@ class _ServiceEditPage extends State<ServiceEditPage> {
             color: Colors.black,
           ),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Exporter',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'exporter',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Exporter')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Exported Car',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'exported car',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Exported Car')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(
@@ -156,29 +167,38 @@ class _ServiceEditPage extends State<ServiceEditPage> {
             color: Colors.black,
           ),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Arrivals Location',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'Bankok',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Arrivals Location')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Departure Location',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'Bangsean',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Departure Location')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
-          const Divider(),
+          // const Divider(),
+          SizedBox(
+            height: 50,
+            child: ElevatedButton(
+              child: Text('Confirm'),
+              onPressed: () {},
+            ),
+          ),
         ],
       ),
     );

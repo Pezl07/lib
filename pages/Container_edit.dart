@@ -75,22 +75,29 @@ class _ContainerEditPage extends State<ContainerEditPage> {
             color: Colors.black,
           ),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Container',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              '51822 0',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Container')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(),
           ListTile(
-            onTap: () {},
-            title: Text('Container Status', style: TextStyle(fontSize: 16)),
-            trailing: Text('Status',
-                style: TextStyle(fontSize: 16, color: Colors.grey)),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Container Status')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
+            ),
           ),
           const Divider(
             color: Colors.black,
@@ -106,49 +113,53 @@ class _ContainerEditPage extends State<ContainerEditPage> {
             color: Colors.black,
           ),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Max weight(t)',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'weight(t)',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-          ),
-          const Divider(),
-          ListTile(
-            onTap: () {},
-            title: Text(
-              'Net weight(t)',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'weight(t)',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-          ),
-          ListTile(
-            onTap: () {},
-            title: Text(
-              'Current weight(t)',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'weight(t)',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Max Weight(t)')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Cube (CBM)',
-              style: TextStyle(fontSize: 16),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Net Weight(t)')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
-            trailing: Text(
-              'Cube (CBM)',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          ListTile(
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Curren Weight(t)')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
+            ),
+          ),
+          const Divider(),
+          ListTile(
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Cube (CBM)')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(
@@ -165,50 +176,54 @@ class _ContainerEditPage extends State<ContainerEditPage> {
             color: Colors.black,
           ),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Container Size',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'size',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-          ),
-          const Divider(),
-          ListTile(
-            onTap: () {},
-            title: Text(
-              'Width(m)',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'width(m)',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Container Size')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Length(m)',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'length(m)',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Width(m)')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(),
           ListTile(
-            onTap: () {},
-            title: Text(
-              'Height(m)',
-              style: TextStyle(fontSize: 16),
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Lenght(m)')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
-            trailing: Text(
-              'height(m)',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          const Divider(),
+          ListTile(
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Height(m)')),
+                Expanded(
+                  child: TextField(
+                      // your TextField's Content
+                      ),
+                ),
+              ],
             ),
           ),
           const Divider(),
