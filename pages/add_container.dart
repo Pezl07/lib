@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 
-class AddPage extends StatefulWidget {
-  //const AddPage({ Key? key }) : super(key: key);
+class AddContainerPage extends StatefulWidget {
+  //const AddContainerPage({ Key? key }) : super(key: key);
 
   @override
-  _AddPageState createState() => _AddPageState();
+  _AddContainerPageState createState() => _AddContainerPageState();
 }
 
-class _AddPageState extends State<AddPage> {
+class _AddContainerPageState extends State<AddContainerPage> {
   TextEditingController todo_title = TextEditingController();
   TextEditingController todo_detail = TextEditingController();
   final _headerStyle = const TextStyle(
@@ -78,14 +78,7 @@ class _AddPageState extends State<AddPage> {
                     ],
                   ),
                 ),
-              ]),
-          //Weight
-          Accordion(
-              maxOpenSections: 1,
-              headerBackgroundColorOpened: Colors.black54,
-              headerPadding:
-                  const EdgeInsets.symmetric(vertical: 17, horizontal: 17),
-              children: [
+                //Weight
                 AccordionSection(
                   isOpen: false,
                   // leftIcon: const Icon(Icons.computer, color: Colors.white),
@@ -127,14 +120,7 @@ class _AddPageState extends State<AddPage> {
                     ],
                   ),
                 ),
-              ]),
-          //Size
-          Accordion(
-              maxOpenSections: 1,
-              headerBackgroundColorOpened: Colors.black54,
-              headerPadding:
-                  const EdgeInsets.symmetric(vertical: 17, horizontal: 17),
-              children: [
+                //Size
                 AccordionSection(
                   isOpen: false,
                   // leftIcon: const Icon(Icons.computer, color: Colors.white),

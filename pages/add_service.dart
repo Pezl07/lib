@@ -19,15 +19,14 @@ List<String> items_import = [
   'นายสมหมาย อยู่เย็น',
 ];
 
-
-class AddPage extends StatefulWidget {
-  //const AddPage({ Key? key }) : super(key: key);
+class AddServicePage extends StatefulWidget {
+  //const AddServicePage({ Key? key }) : super(key: key);
 
   @override
-  _AddPageState createState() => _AddPageState();
+  _AddServicePageState createState() => _AddServicePageState();
 }
 
-class _AddPageState extends State<AddPage> {
+class _AddServicePageState extends State<AddServicePage> {
   TextEditingController todo_title = TextEditingController();
   TextEditingController todo_detail = TextEditingController();
   final _headerStyle = const TextStyle(
@@ -153,53 +152,36 @@ class _AddPageState extends State<AddPage> {
                         ),
                       ),
                       Divider(),
-
-
-
-
-                      
-                    DateTimePicker(
-              initialValue: '',
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2100),
-              dateLabelText: 'Arrival date',style: TextStyle(
-                                  fontSize: 14,
-                                ),
-              onChanged: (val) {
-                print(val.toString());
-  
-              },
-            ),
-                
-                
-                
-            
+                      DateTimePicker(
+                        initialValue: '',
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100),
+                        dateLabelText: 'Arrival date',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                        onChanged: (val) {
+                          print(val.toString());
+                        },
+                      ),
                       Divider(),
-                           
-                    DateTimePicker(
-              initialValue: '',
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2100),
-              dateLabelText: 'Cut-off date',style: TextStyle(
-                                  fontSize: 14,
-                                ),
-              onChanged: (val) {
-                print(val.toString());
-  
-              },
-            ),
+                      DateTimePicker(
+                        initialValue: '',
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100),
+                        dateLabelText: 'Cut-off date',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                        onChanged: (val) {
+                          print(val.toString());
+                        },
+                      ),
                       Divider(),
                     ],
                   ),
                 ),
-              ]),
-          //Export
-          Accordion(
-              maxOpenSections: 1,
-              headerBackgroundColorOpened: Colors.black54,
-              headerPadding:
-                  const EdgeInsets.symmetric(vertical: 17, horizontal: 17),
-              children: [
+                //Export
                 AccordionSection(
                   isOpen: false,
                   // leftIcon: const Icon(Icons.computer, color: Colors.white),
@@ -226,14 +208,7 @@ class _AddPageState extends State<AddPage> {
                     ],
                   ),
                 ),
-              ]),
-          //Location
-          Accordion(
-              maxOpenSections: 1,
-              headerBackgroundColorOpened: Colors.black54,
-              headerPadding:
-                  const EdgeInsets.symmetric(vertical: 17, horizontal: 17),
-              children: [
+                //Location
                 AccordionSection(
                   isOpen: false,
                   // leftIcon: const Icon(Icons.computer, color: Colors.white),

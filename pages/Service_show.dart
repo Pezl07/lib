@@ -1,4 +1,6 @@
+import 'package:cdms_flutter/main.dart';
 import 'package:cdms_flutter/pages/Service_edit.dart';
+import 'package:cdms_flutter/pages/Service_showlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -16,7 +18,7 @@ class _ServiceShowPage extends State<ServiceShowPage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).popUntil((route) => route.isFirst);
           },
           icon: Icon(Icons.arrow_back_ios),
         ),

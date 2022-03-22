@@ -1,3 +1,5 @@
+import 'package:cdms_flutter/pages/Service_show.dart';
+import 'package:cdms_flutter/pages/add_service.dart';
 import 'package:flutter/material.dart';
 
 class ServiceShowListPage extends StatefulWidget {
@@ -22,7 +24,13 @@ class _ServiceShowListPageState extends State<ServiceShowListPage> {
       body: ListView(
         children: <Widget>[
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ServiceShowPage())).then((value) {
+              });
+            },
             title: Text(
               'Service 1',
               style: TextStyle(fontSize: 20, color: Colors.black),
@@ -38,7 +46,13 @@ class _ServiceShowListPageState extends State<ServiceShowListPage> {
           ),
           const Divider(),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ServiceShowPage())).then((value) {
+              });
+            },
             title: Text('Service 2',
                 style: TextStyle(fontSize: 20, color: Colors.black)),
             subtitle: Text('At Pro Solution',
@@ -51,8 +65,15 @@ class _ServiceShowListPageState extends State<ServiceShowListPage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AddServicePage())).then((value) {
+          });
+        },
       ),
     );
   }
+  
 }

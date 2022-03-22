@@ -1,3 +1,5 @@
+import 'package:cdms_flutter/pages/Container_show.dart';
+import 'package:cdms_flutter/pages/add_container.dart';
 import 'package:flutter/material.dart';
 
 class ContainerShowListPage extends StatefulWidget {
@@ -22,7 +24,13 @@ class _ContainerShowListPageState extends State<ContainerShowListPage> {
       body: ListView(
         children: <Widget>[
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ContainerShowPage())).then((value) {
+              });
+            },
             title: Text(
               'WFHU 51822 0',
               style: TextStyle(fontSize: 20, color: Colors.black),
@@ -34,7 +42,13 @@ class _ContainerShowListPageState extends State<ContainerShowListPage> {
           ),
           const Divider(),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ContainerShowPage())).then((value) {
+              });
+            },
             title: Text('ONES 67834 0',
                 style: TextStyle(fontSize: 20, color: Colors.black)),
             subtitle: Text('Reefer Container',
@@ -45,7 +59,13 @@ class _ContainerShowListPageState extends State<ContainerShowListPage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AddContainerPage())).then((value) {
+          });
+        },
       ),
     );
   }

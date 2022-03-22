@@ -1,4 +1,6 @@
-import 'package:cdmsflutter/pages/Container_edit.dart';
+import 'package:cdms_flutter/main.dart';
+import 'package:cdms_flutter/pages/Container_edit.dart';
+import 'package:cdms_flutter/pages/Container_showlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -16,7 +18,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).popUntil((route) => route.isFirst);
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
