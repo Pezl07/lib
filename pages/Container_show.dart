@@ -3,15 +3,39 @@ import 'package:cdms_flutter/pages/Container_edit.dart';
 import 'package:cdms_flutter/pages/Container_showlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+
 
 class ContainerShowPage extends StatefulWidget {
-  const ContainerShowPage({Key? key}) : super(key: key);
+  final con_id;
+  const ContainerShowPage(this.con_id);
 
   @override
   State<ContainerShowPage> createState() => _ContainerShowPage();
 }
 
 class _ContainerShowPage extends State<ContainerShowPage> {
+  var _con_id;
+  var container = <String, dynamic>{};
+
+  @override
+  void initState() {
+    super.initState();
+    _con_id = widget.con_id;
+    getData();
+  }
+
+  Future<void> getData() async {
+    final response = await http.get(Uri.parse('http://10.0.2.2/code_team4/public/Flutter_container/get_by_id/' + _con_id.toString()));
+    if (response.statusCode == 200) {
+      var result = utf8.decode(response.bodyBytes);
+      setState(() {
+        container = jsonDecode(result);
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +46,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
-        title: Text('CONTAINER'),
+        title: Text('${_con_id}'),
         backgroundColor: Color.fromARGB(255, 1, 0, 73),
         actions: [
           IconButton(
@@ -30,7 +54,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ContainerEditPage()),
+                      builder: (context) => ContainerEditPage(_con_id)),
                 );
               },
               icon: Icon(
@@ -42,8 +66,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
       body: ListView(
         children: <Widget>[
           Center(
-            child: Text(
-              'WFHU 51822 0',
+            child: Text(container['con_number'].toString(),
               style: TextStyle(fontSize: 40),
             ),
           ),
@@ -66,8 +89,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
               'Container',
               style: TextStyle(fontSize: 16),
             ),
-            trailing: Text(
-              '51822 0',
+            trailing: Text(container['con_number'].toString(),
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
@@ -75,7 +97,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
           ListTile(
             onTap: () {},
             title: Text('Container Status', style: TextStyle(fontSize: 16)),
-            trailing: Text('Status',
+            trailing: Text(container['stac_name'].toString(),
                 style: TextStyle(fontSize: 16, color: Colors.grey)),
           ),
           const Divider(
@@ -97,8 +119,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
               'Max weight(t)',
               style: TextStyle(fontSize: 16),
             ),
-            trailing: Text(
-              'weight(t)',
+            trailing: Text(container['con_max_weight'].toString(),
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
@@ -110,18 +131,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
-              'weight(t)',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-          ),
-          ListTile(
-            onTap: () {},
-            title: Text(
-              'Current weight(t)',
-              style: TextStyle(fontSize: 16),
-            ),
-            trailing: Text(
-              'weight(t)',
+              container['con_net_weight'].toString(),
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
@@ -133,7 +143,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
-              'Cube (CBM)',
+              container['con_cube'].toString(),
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
@@ -157,7 +167,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
-              'size',
+              container['size_name'].toString(),
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
@@ -169,7 +179,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
-              'width(m)',
+              container['size_width_out'].toString(),
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
@@ -181,7 +191,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
-              'length(m)',
+              container['size_length_out'].toString(),
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
@@ -193,7 +203,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
-              'height(m)',
+              container['size_height_out'].toString(),
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),

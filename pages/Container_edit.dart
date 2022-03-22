@@ -1,15 +1,29 @@
 import 'package:cdms_flutter/pages/Container_show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class ContainerEditPage extends StatefulWidget {
-  const ContainerEditPage({Key? key}) : super(key: key);
+  final con_id;
+  const ContainerEditPage(this.con_id);
 
   @override
   State<ContainerEditPage> createState() => _ContainerEditPage();
 }
 
 class _ContainerEditPage extends State<ContainerEditPage> {
+  var _con_id;
+  var container = <String, dynamic>{};
+
+  @override
+  void initState() {
+    super.initState();
+    _con_id = widget.con_id;
+    print('con edit page' + _con_id.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +33,7 @@ class _ContainerEditPage extends State<ContainerEditPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const ContainerShowPage()),
+                  builder: (context) => const ContainerShowPage(1)),
             );
           },
           icon: Icon(Icons.arrow_back_ios),
@@ -30,7 +44,7 @@ class _ContainerEditPage extends State<ContainerEditPage> {
           IconButton(
               onPressed: () {
                 setState(() {
-                  ContainerEditPage();
+                  // ContainerEditPage();
                 });
               },
               icon: Icon(

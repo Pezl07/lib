@@ -3,15 +3,15 @@ import 'package:cdms_flutter/pages/Container_showlist.dart';
 import 'package:cdms_flutter/pages/Service_showlist.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MainPage(),
     );
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
-  // const MainPage({ Key? key }) : super(key: key);
+  const MainPage({ Key? key }) : super(key: key);
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -28,8 +28,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
   final tabs = [
-    ServiceShowListPage(),
-    ContainerShowListPage(),
+    const ServiceShowListPage(),
+    const ContainerShowListPage(),
   ];
 
   // get Table => null;
@@ -48,7 +48,6 @@ class _MainPageState extends State<MainPage> {
         ],
         onTap: (index) {
           setState(() {
-            print(index);
             _currentIndex = index;
           });
         },
