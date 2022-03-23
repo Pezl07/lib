@@ -27,8 +27,6 @@ class _ContainerEditPage extends State<ContainerEditPage> {
     var url = Uri.http('10.0.2.2:80', 'code_team4/public/Flutter_container/delete/$_con_id');
     Map<String, String> header = {"Content-type": "application/json"};
     var response = await http.delete(url, headers: header);
-    print('------result-------');
-    print(response.body);
   }
 
 
@@ -38,11 +36,7 @@ class _ContainerEditPage extends State<ContainerEditPage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const ContainerShowPage(1)),
-            );
+            Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
@@ -52,6 +46,7 @@ class _ContainerEditPage extends State<ContainerEditPage> {
           IconButton(
               onPressed: () {
                 delete();
+                Navigator.of(context).popUntil((route) => route.isFirst);
               },
               icon: Icon(
                 Icons.auto_delete,
