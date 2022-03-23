@@ -11,8 +11,8 @@ class AddContainerPage extends StatefulWidget {
 }
 
 class _AddContainerPageState extends State<AddContainerPage> {
-  TextEditingController todo_title = TextEditingController();
-  TextEditingController todo_detail = TextEditingController();
+  TextEditingController con_number = TextEditingController();
+  TextEditingController con_size = TextEditingController();
   final _headerStyle = const TextStyle(
       color: Color(0xffffffff), fontSize: 15, fontWeight: FontWeight.bold);
 
