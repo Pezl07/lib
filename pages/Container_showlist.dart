@@ -39,7 +39,7 @@ class _ContainerShowListPageState extends State<ContainerShowListPage> {
           onPressed: () {},
         ),
         title: const Text('CONTAINER'),
-        backgroundColor: const Color.fromARGB(255, 25, 24, 29),
+        backgroundColor: Color.fromARGB(255, 1, 0, 73),
       ),
       body: ListView.builder(
         itemCount: container.length,
