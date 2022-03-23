@@ -122,7 +122,6 @@ class _AddContainerPageState extends State<AddContainerPage> {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-                // ถูกหมด
                 print('-----------');
                 print('con_number: ${con_number.text}');
                 print('cont_id: $selected_cont_id');
@@ -133,6 +132,7 @@ class _AddContainerPageState extends State<AddContainerPage> {
                 print('con_cube: ${con_cube.text}');
                 print('size_id: $selected_size_id');
                 insert();
+                Navigator.pop(context);
             },
             child: Text(
               'SAVE',

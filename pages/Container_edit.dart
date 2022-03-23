@@ -21,8 +21,16 @@ class _ContainerEditPage extends State<ContainerEditPage> {
   void initState() {
     super.initState();
     _con_id = widget.con_id;
-    print('con edit page' + _con_id.toString());
   }
+
+  Future delete() async {
+    var url = Uri.http('10.0.2.2:80', 'code_team4/public/Flutter_container/delete/$_con_id');
+    Map<String, String> header = {"Content-type": "application/json"};
+    var response = await http.delete(url, headers: header);
+    print('------result-------');
+    print(response.body);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +51,7 @@ class _ContainerEditPage extends State<ContainerEditPage> {
         actions: [
           IconButton(
               onPressed: () {
-                setState(() {
-                  // ContainerEditPage();
-                });
+                delete();
               },
               icon: Icon(
                 Icons.auto_delete,
