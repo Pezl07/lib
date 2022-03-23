@@ -16,10 +16,7 @@ class _ServiceEditPage extends State<ServiceEditPage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ServiceShowPage()),
-            );
+            Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
@@ -29,7 +26,6 @@ class _ServiceEditPage extends State<ServiceEditPage> {
           IconButton(
               onPressed: () {
                 setState(() {
-                  ServiceEditPage();
                 });
               },
               icon: Icon(
