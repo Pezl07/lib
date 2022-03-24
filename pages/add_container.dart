@@ -101,7 +101,7 @@ class _AddContainerPageState extends State<AddContainerPage> {
 
     Map<String, String> header = {'Accept': 'application/json', 'Content-Type': 'application/json'};
     String jsondata =
-        '{"con_number":"${con_number.text}", "con_max_weight": "${con_max_weight.text}", "con_tare_weight": "${con_tare_weight.text}", "con_net_weight":"${con_net_weight.text}", "con_cube":"${con_cube.text}", "con_size_id":"$selected_size_id", "con_cont_id":"$selected_cont_id", "con_agn_id":"$selected_agn_id", "con_stac_id":"1"}';
+        '{"con_number":"${con_number.text}", "con_max_weight": "${con_max_weight.text}", "con_tare_weight": "${con_tare_weight.text}", "con_net_weight":"${con_net_weight.text}", "con_cube":"${con_cube.text}", "con_size_id":"$selected_size_id", "con_cont_id":"$selected_cont_id", "con_agn_id":"$selected_agn_id", "con_stac_id":"4"}';
     print(jsondata);
     var response = await http.post(url, headers: header, body: jsondata);
     print('------result-------');
