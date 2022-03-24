@@ -46,7 +46,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
-        title: Text('${_con_id}'),
+        title: Text(container['con_number'].toString()),
         backgroundColor: Color.fromARGB(255, 1, 0, 73),
         actions: [
           IconButton(
@@ -96,8 +96,8 @@ class _ContainerShowPage extends State<ContainerShowPage> {
           const Divider(),
           ListTile(
             onTap: () {},
-            title: Text('Container Status', style: TextStyle(fontSize: 16)),
-            trailing: Text(container['stac_name'].toString(),
+            title: Text('Container Type', style: TextStyle(fontSize: 16)),
+            trailing: Text(container['cont_name'].toString(),
                 style: TextStyle(fontSize: 16, color: Colors.grey)),
           ),
           const Divider(
@@ -116,7 +116,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
           ListTile(
             onTap: () {},
             title: Text(
-              'Max weight(t)',
+              'Max weight (t)',
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(container['con_max_weight'].toString(),
@@ -127,7 +127,18 @@ class _ContainerShowPage extends State<ContainerShowPage> {
           ListTile(
             onTap: () {},
             title: Text(
-              'Net weight(t)',
+              'Tare weight (t)',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: Text(container['con_tare_weight'].toString(),
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
+          ),
+          const Divider(),
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'Net weight (t)',
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
@@ -175,7 +186,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
           ListTile(
             onTap: () {},
             title: Text(
-              'Width(m)',
+              'Width (m)',
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
@@ -187,7 +198,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
           ListTile(
             onTap: () {},
             title: Text(
-              'Length(m)',
+              'Length (m)',
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
@@ -199,7 +210,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
           ListTile(
             onTap: () {},
             title: Text(
-              'Height(m)',
+              'Height (m)',
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
