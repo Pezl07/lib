@@ -10,7 +10,9 @@ import 'dart:convert';
 
 class ServiceEditPage extends StatefulWidget {
   final ser_id;
-  const ServiceEditPage(this.ser_id);
+  final ser_arrivals_date;
+  final ser_departure_date;
+  const ServiceEditPage(this.ser_id, this.ser_arrivals_date, this.ser_departure_date);
 
   @override
   State<ServiceEditPage> createState() => _ServiceEditPage();
@@ -20,6 +22,8 @@ class _ServiceEditPage extends State<ServiceEditPage> {
   String? date = DateFormat('kk:mm:ss').format(DateTime.now());
 
   var _ser_id;
+  var _ser_arrivals_date;
+  var _ser_departure_date;
   var service = <String, dynamic>{};
 
   List car = [];
@@ -51,16 +55,20 @@ class _ServiceEditPage extends State<ServiceEditPage> {
   List<String> con_number_string = [];
 
   TextEditingController arrival_date = TextEditingController();
+  TextEditingController arrival_date2 = TextEditingController();
   TextEditingController cut_off_date = TextEditingController();
   TextEditingController current_weight = TextEditingController();
   TextEditingController arrival_location = TextEditingController();
   TextEditingController departure_location = TextEditingController();
-  String testdate = '2022-03-25';
 
   @override
   void initState() {
     super.initState();
     _ser_id = widget.ser_id;
+    _ser_arrivals_date = widget.ser_arrivals_date;
+    _ser_departure_date = widget.ser_departure_date;
+    print(_ser_arrivals_date);
+    print(_ser_departure_date);
     getData();
   }
   
@@ -163,6 +171,8 @@ class _ServiceEditPage extends State<ServiceEditPage> {
         current_weight.text = service['ser_weight'];
         arrival_location.text = service['ser_arrivals_location'];
         departure_location.text = service['ser_departure_location'];
+        arrival_date2.text = service['ser_arrivals_date'].substring(0, 10);
+        print(arrival_date2.text);
       });
     }
   }
@@ -172,7 +182,7 @@ class _ServiceEditPage extends State<ServiceEditPage> {
 
     Map<String, String> header = {'Accept': 'application/json', 'Content-Type': 'application/json'};
     String jsondata =
-        '{"ser_id":"$_ser_id", "ser_car_id_in": "$selected_car_id_import", "ser_dri_id_in":"$selected_dri_id_import", "ser_dri_id_out":"$selected_dri_id_export", "ser_car_id_out":"$selected_car_id_export", "ser_arrivals_location":"${arrival_location.text}", "ser_departure_location":"${departure_location.text}", "ser_weight":"${current_weight.text}", "ser_con_id": "$selected_con_id", "ser_stac_id": "1", "ser_cus_id": "$selected_cus_id" }';
+        '{"ser_id":"$_ser_id", "ser_car_id_in": "$selected_car_id_import", "ser_dri_id_in":"$selected_dri_id_import", "ser_dri_id_out":"$selected_dri_id_export", "ser_car_id_out":"$selected_car_id_export", "ser_arrivals_location":"${arrival_location.text}", "ser_departure_location":"${departure_location.text}", "ser_weight":"${current_weight.text}", "ser_con_id": "$selected_con_id", "ser_stac_id": "1", "ser_cus_id": "$selected_cus_id", "ser_arrivals_date":"$_ser_arrivals_date $date", "ser_departure_date": "$_ser_departure_date $date"}';
     print(jsondata);
     var response = await http.post(url, headers: header, body: jsondata);
     print('------result-------');
@@ -184,17 +194,16 @@ class _ServiceEditPage extends State<ServiceEditPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () async {int count = 0; Navigator.of(context).popUntil((_)=> count++>= 1);},
           icon: Icon(Icons.arrow_back_ios),
         ),
         title: Text('SERVICE'),
         backgroundColor: Color.fromARGB(255, 1, 0, 73),
         actions: [
           IconButton(
-              onPressed: () {
-                delete().then((value) => Navigator.of(context).popUntil((route) => route.isFirst)); 
+              onPressed: () async {
+                int count = 0;
+                delete().then((value) => Navigator.of(context).popUntil((_)=> count++>= 2));
               },
               icon: Icon(
                 Icons.auto_delete,
@@ -331,7 +340,7 @@ class _ServiceEditPage extends State<ServiceEditPage> {
                 Expanded(child: Text('Arrival Date')),
                 Expanded(
                   child: DateTimePicker(
-                  initialValue: '',
+                  initialValue: _ser_arrivals_date, 
                   firstDate: DateTime(2000),
                   lastDate: DateTime(2100),
                   dateLabelText: 'Arrivals date',
@@ -339,8 +348,9 @@ class _ServiceEditPage extends State<ServiceEditPage> {
                     fontSize: 14,
                   ),
                   onChanged: (val) {
-                    arrival_date.text = val.toString();
-                    print(arrival_date.text);
+                    setState(() {
+                      _ser_arrivals_date = val.toString();
+                    });
                   },
                 ),
                 
@@ -355,7 +365,7 @@ class _ServiceEditPage extends State<ServiceEditPage> {
                 Expanded(child: Text('Cut-off date')),
                  Expanded(
                   child: DateTimePicker(
-                  initialValue: '',
+                  initialValue: _ser_departure_date,
                   firstDate: DateTime(2000),
                   lastDate: DateTime(2100),
                   dateLabelText: 'Cut-off date',
@@ -363,7 +373,9 @@ class _ServiceEditPage extends State<ServiceEditPage> {
                     fontSize: 14,
                   ),
                   onChanged: (val) {
-                    arrival_date.text = val.toString();
+                    setState(() {
+                      _ser_departure_date = val.toString();
+                    });
                   },
                 ),
               )],
@@ -403,8 +415,8 @@ class _ServiceEditPage extends State<ServiceEditPage> {
                         onChanged: (value) {
                           setState(() {
                             selected_con_number = value as String;
-                            for (int i = 0; i < container.length - 1; i++) {
-                              if (container[i] == selected_con_number) {
+                            for (int i = 0; i < container.length; i++) {
+                              if (con_number_string[i] == selected_con_number) {
                                 selected_con_id = con_id_string[i];
                                 break;
                               }
@@ -423,56 +435,56 @@ class _ServiceEditPage extends State<ServiceEditPage> {
           ),
 
           const Divider(),
-          // ListTile(
-          //   title: Row(
-          //     children: <Widget>[
-          //       Expanded(child: Text('Customer')),
-          //       Center(
-          //         child: Container(
-          //           height: 40,
-          //           width: 190,
-          //           child: DropdownButtonHideUnderline(
-          //             child: DropdownButton2(
-          //               hint: Text(
-          //                 'Customer',
-          //                 style: TextStyle(
-          //                   fontSize: 14,
-          //                   color: Theme.of(context).hintColor,
-          //                 ),
-          //               ),
-          //               items: cus_company_name_string
-          //                   .map((item) => DropdownMenuItem<String>(
-          //                         value: item,
-          //                         child: Text(
-          //                           item,
-          //                           style: const TextStyle(
-          //                             fontSize: 14,
-          //                           ),
-          //                         ),
-          //                       ))
-          //                   .toList(),
-          //               value: selected_cus_company_name,
-          //               onChanged: (value) {
-          //                 setState(() {
-          //                   selected_cus_company_name = value as String;
-          //                   for (int i = 0; i < customer.length; i++) {
-          //                     if (cus_company_name_string[i] == selected_cus_company_name) {
-          //                       selected_cus_id = cus_id_string[i];
-          //                       break;
-          //                     }
-          //                   }
-          //                 });
-          //               },
-          //               buttonHeight: 40,
-          //               buttonWidth: 140,
-          //               itemHeight: 40,
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          ListTile(
+            title: Row(
+              children: <Widget>[
+                Expanded(child: Text('Customer')),
+                Center(
+                  child: Container(
+                    height: 40,
+                    width: 190,
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton2(
+                        hint: Text(
+                          'Customer',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context).hintColor,
+                          ),
+                        ),
+                        items: cus_company_name_string
+                            .map((item) => DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(
+                                    item,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
+                        value: selected_cus_company_name,
+                        onChanged: (value) {
+                          setState(() {
+                            selected_cus_company_name = value as String;
+                            for (int i = 0; i < customer.length; i++) {
+                              if (cus_company_name_string[i] == selected_cus_company_name) {
+                                selected_cus_id = cus_id_string[i];
+                                break;
+                              }
+                            }
+                          });
+                        },
+                        buttonHeight: 40,
+                        buttonWidth: 140,
+                        itemHeight: 40,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
 
           ListTile(
             title: Row(
@@ -645,18 +657,17 @@ class _ServiceEditPage extends State<ServiceEditPage> {
             child: ElevatedButton(
               child: Text('Confirm'),
               onPressed: () {
-                print('--------------');
-                print('ser_dri_id_in : $selected_dri_id_import');
-                print('ser_dri_id_out : $selected_dri_id_export');
-                print('ser_con_id : $selected_con_id');
-                print('ser_car_id_in : $selected_car_id_import');
-                print('ser_car_id_out : $selected_car_id_export');
-                print('ser_arrivals_date : $testdate $date');
-                print('ser_departure_date : $testdate $date');
-                print('ser_id : $_ser_id');
-                print('ser_weight : ${current_weight.text}');
-
-                update();
+                // print('--------------');
+                // print('ser_dri_id_in : $selected_dri_id_import');
+                // print('ser_dri_id_out : $selected_dri_id_export');
+                // print('ser_con_id : $selected_con_id');
+                // print('ser_car_id_in : $selected_car_id_import');
+                // print('ser_car_id_out : $selected_car_id_export');
+                // print('ser_arrivals_date : $_ser_arrivals_date $date');
+                // print('ser_departure_date : $_ser_departure_date $date');
+                // print('ser_id : $_ser_id');
+                // print('ser_weight : ${current_weight.text}');
+                update().then((value) =>  Navigator.pop(context));
               },
             ),
           ),

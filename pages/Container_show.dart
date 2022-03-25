@@ -42,9 +42,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).popUntil((route) => route.isFirst);
-          },
+          onPressed: () async {int count = 0; Navigator.of(context).popUntil((_)=> count++>= 1);},
           icon: Icon(Icons.arrow_back_ios),
         ),
         title: Text(container['con_number'].toString()),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cdms_flutter/pages/Container_showlist.dart';
 import 'package:cdms_flutter/pages/Service_showlist.dart';
+import 'package:cdms_flutter/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,46 +14,67 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: LoginPage(),
     );
   }
 }
 
-class MainPage extends StatefulWidget {
-  const MainPage({ Key? key }) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({ Key? key }) : super(key: key);
 
   @override
-  _MainPageState createState() => _MainPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _MainPageState extends State<MainPage> {
-  int _currentIndex = 0;
-  final tabs = [
-    const ServiceShowListPage(),
-    const ContainerShowListPage(),
-  ];
+class _LoginPageState extends State<LoginPage> {
+  // TextEditingController user_username
 
-  // get Table => null;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: tabs[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          },
+          icon: Icon(Icons.arrow_back_ios),
+        ),
+        title: Text('CDMS'),
         backgroundColor: Color.fromARGB(255, 1, 0, 73),
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white54,
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "SERVICE"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.business), label: "CONTAINER"),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
       ),
+      body: ListView(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  Text('Account Login'),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Username'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Password'),
+                  ),
+                  ElevatedButton(
+                    child: Text("Login"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MainPage()
+                        )
+                      );
+                    },
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      )
     );
   }
 }

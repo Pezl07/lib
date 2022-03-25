@@ -181,9 +181,7 @@ class _ContainerEditPage extends State<ContainerEditPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () async {int count = 0; Navigator.of(context).popUntil((_)=> count++>= 1);},
           icon: Icon(Icons.arrow_back_ios),
         ),
         title: Text('CONTAINER'),
@@ -193,7 +191,8 @@ class _ContainerEditPage extends State<ContainerEditPage> {
               onPressed: () async {
                 var status = await delete();
                 if (status == 'success') {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  int count = 0;
+                  delete().then((value) => Navigator.of(context).popUntil((_)=> count++>= 2));
                 } else {
                   _showMyDialog();
                 }

@@ -19,6 +19,8 @@ class _ServiceShowPage extends State<ServiceShowPage> {
   var _car_in = <String, dynamic>{};
   var _car_out = <String, dynamic>{};
   var service = <String, dynamic>{};
+  String? ser_arrivals_date;
+  String? ser_departure_date;
 
   @override
   void initState() {
@@ -34,6 +36,8 @@ class _ServiceShowPage extends State<ServiceShowPage> {
       
       setState(() {
         service = jsonDecode(result);
+        ser_arrivals_date = service['ser_arrivals_date'].substring(0, 10);
+        ser_departure_date = service['ser_departure_date'].substring(0, 10);
         getDriver(service['ser_dri_id_in'], 'in');
         getDriver(service['ser_dri_id_out'], 'out');
         getCar(service['ser_car_id_in'], 'in');
@@ -75,9 +79,7 @@ class _ServiceShowPage extends State<ServiceShowPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).popUntil((route) => route.isFirst);
-          },
+          onPressed: () async {int count = 0; Navigator.of(context).popUntil((_)=> count++>= 1);},
           icon: Icon(Icons.arrow_back_ios),
         ),
         title: Text('SERVICE'),
@@ -88,8 +90,9 @@ class _ServiceShowPage extends State<ServiceShowPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ServiceEditPage(_ser_id)),
-                );
+                      builder: (context) => ServiceEditPage(_ser_id, ser_arrivals_date, ser_departure_date))).then((value) async {
+                    await getData();
+              });
               },
               icon: Icon(
                 Icons.create_rounded,
