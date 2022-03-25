@@ -128,11 +128,11 @@ class _AddServicePageState extends State<AddServicePage> {
 
     Map<String, String> header = {'Accept': 'application/json', 'Content-Type': 'application/json'};
     String jsondata =
-        '{"ser_departure_date":"${cut_off_date.text} ${date}", "ser_car_id_in": "$selected_car_id_import", "ser_arrivals_date": "${arrival_date.text} ${date}", "ser_dri_id_in":"$selected_dri_id_import", "ser_dri_id_out":"$selected_dri_id_export", "ser_car_id_out":"$selected_car_id_export", "ser_arrivals_location":"${arrival_location.text}", "ser_departure_location":"${departure_location.text}", "ser_weight":"${current_weight.text}", "ser_con_id": "$selected_container_id", "ser_stac_id": "4", "ser_cus_id": "$selected_customer_id" }';
-    print(jsondata);
+        '{"ser_departure_date":"${cut_off_date.text} ${date}", "ser_car_id_in": "$selected_car_id_import", "ser_arrivals_date": "${arrival_date.text} ${date}", "ser_dri_id_in":"$selected_dri_id_import", "ser_dri_id_out":"$selected_dri_id_export", "ser_car_id_out":"$selected_car_id_export", "ser_arrivals_location":"${arrival_location.text}", "ser_departure_location":"${departure_location.text}", "ser_weight":"${current_weight.text}", "ser_con_id": "$selected_container_id", "ser_stac_id": "1", "ser_cus_id": "$selected_customer_id" }';
+    // print(jsondata);
     var response = await http.post(url, headers: header, body: jsondata);
-    print('------result-------');
-    print(response.body);
+    // print('------result-------');
+    // print(response.body);
   }
 
 
@@ -153,9 +153,7 @@ class _AddServicePageState extends State<AddServicePage> {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              
-              insert();
-              Navigator.pop(context);
+              insert().then((value) =>  Navigator.pop(context));
             },
             child: Text(
               'SAVE',

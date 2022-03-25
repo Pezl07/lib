@@ -104,8 +104,8 @@ class _AddContainerPageState extends State<AddContainerPage> {
         '{"con_number":"${con_number.text}", "con_max_weight": "${con_max_weight.text}", "con_tare_weight": "${con_tare_weight.text}", "con_net_weight":"${con_net_weight.text}", "con_cube":"${con_cube.text}", "con_size_id":"$selected_size_id", "con_cont_id":"$selected_cont_id", "con_agn_id":"$selected_agn_id", "con_stac_id":"4"}';
     print(jsondata);
     var response = await http.post(url, headers: header, body: jsondata);
-    print('------result-------');
-    print(response.body);
+    // print('------result-------');
+    // print(response.body);
   }
   @override
   Widget build(BuildContext context) {
@@ -123,17 +123,16 @@ class _AddContainerPageState extends State<AddContainerPage> {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-                print('-----------');
-                print('con_number: ${con_number.text}');
-                print('cont_id: $selected_cont_id');
-                print('agn_id: $selected_agn_id');
-                print('con_max_weight: ${con_max_weight.text}');
-                print('con_tare_weight: ${con_tare_weight.text}');
-                print('con_net_weight: ${con_net_weight.text}');
-                print('con_cube: ${con_cube.text}');
-                print('size_id: $selected_size_id');
-                insert();
-                Navigator.pop(context);
+                // print('-----------');
+                // print('con_number: ${con_number.text}');
+                // print('cont_id: $selected_cont_id');
+                // print('agn_id: $selected_agn_id');
+                // print('con_max_weight: ${con_max_weight.text}');
+                // print('con_tare_weight: ${con_tare_weight.text}');
+                // print('con_net_weight: ${con_net_weight.text}');
+                // print('con_cube: ${con_cube.text}');
+                // print('size_id: $selected_size_id');
+                insert().then((value) => Navigator.pop(context));
             },
             child: Text(
               'SAVE',

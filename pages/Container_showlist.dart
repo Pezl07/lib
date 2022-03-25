@@ -40,13 +40,23 @@ class _ContainerShowListPageState extends State<ContainerShowListPage> {
         ),
         title: const Text('CONTAINER'),
         backgroundColor: Color.fromARGB(255, 1, 0, 73),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () async {
+              await getData();
+            },
+            child: new Icon(Icons.refresh, color: Colors.white,),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: container.length,
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-              leading: const FlutterLogo(),
+              leading:  CircleAvatar(
+                backgroundImage: NetworkImage('https://packer.searates.com/images/main-container.png')
+              ),
               title: Text('${container[index]['con_number']}',
               style: const TextStyle(fontSize: 20, color: Colors.black)),
               subtitle: Text('${container[index]['cont_name']}', style: const TextStyle(fontSize: 16, color: Colors.grey)),
@@ -56,7 +66,8 @@ class _ContainerShowListPageState extends State<ContainerShowListPage> {
               MaterialPageRoute(
                   builder: (context) => ContainerShowPage(
                     container[index]['con_id']
-                  ))).then((value) {
+                  ))).then((value) async {
+                    await getData();
               });
             },
             ),
@@ -69,7 +80,8 @@ class _ContainerShowListPageState extends State<ContainerShowListPage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => AddContainerPage())).then((value) {
+                  builder: (context) => AddContainerPage())).then((value) async {
+                    await getData();
           });
         },
       ),

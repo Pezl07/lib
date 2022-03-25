@@ -54,11 +54,39 @@ class _ContainerEditPage extends State<ContainerEditPage> {
     _con_id = widget.con_id;
   }
 
-  Future delete() async {
+  Future<String> delete() async {
     var url = Uri.http(
         '10.0.2.2:80', 'code_team4/public/Flutter_container/delete/$_con_id');
     Map<String, String> header = {"Content-type": "application/json"};
     var response = await http.delete(url, headers: header);
+    return jsonDecode(response.body);
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Cannot delete the container'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('The container is used by some service'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -75,9 +103,13 @@ class _ContainerEditPage extends State<ContainerEditPage> {
         backgroundColor: Color.fromARGB(255, 1, 0, 73),
         actions: [
           IconButton(
-              onPressed: () {
-                delete();
-                Navigator.of(context).popUntil((route) => route.isFirst);
+              onPressed: () async {
+                var status = await delete();
+                if (status == 'success') {
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                } else {
+                  _showMyDialog();
+                }
               },
               icon: Icon(
                 Icons.auto_delete,

@@ -4,9 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class ServiceEditPage extends StatefulWidget {
-  const ServiceEditPage({Key? key}) : super(key: key);
+  final ser_id;
+  const ServiceEditPage(this.ser_id);
 
   @override
   State<ServiceEditPage> createState() => _ServiceEditPage();
@@ -14,6 +18,10 @@ class ServiceEditPage extends StatefulWidget {
 
 class _ServiceEditPage extends State<ServiceEditPage> {
   String? date = DateFormat('kk:mm:ss').format(DateTime.now());
+
+  var _ser_id;
+  var service = <String, dynamic>{};
+
   List car = [];
   String? selected_car_import;
   String? selected_car_export;
@@ -49,6 +57,20 @@ class _ServiceEditPage extends State<ServiceEditPage> {
   TextEditingController departure_location = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    _ser_id = widget.ser_id;
+  }
+  
+  Future delete() async {
+    var url = Uri.http(
+        '10.0.2.2:80', 'code_team4/public/Flutter_service/delete/$_ser_id');
+    Map<String, String> header = {"Content-type": "application/json"};
+    var response = await http.delete(url, headers: header);
+    print(jsonDecode(response.body));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -63,7 +85,7 @@ class _ServiceEditPage extends State<ServiceEditPage> {
         actions: [
           IconButton(
               onPressed: () {
-                setState(() {});
+                delete().then((value) => Navigator.of(context).popUntil((route) => route.isFirst)); 
               },
               icon: Icon(
                 Icons.auto_delete,

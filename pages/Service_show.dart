@@ -88,7 +88,7 @@ class _ServiceShowPage extends State<ServiceShowPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ServiceEditPage()),
+                      builder: (context) => ServiceEditPage(_ser_id)),
                 );
               },
               icon: Icon(

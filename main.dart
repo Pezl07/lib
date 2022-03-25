@@ -40,6 +40,7 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color.fromARGB(255, 1, 0, 73),
         selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white54,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "SERVICE"),
