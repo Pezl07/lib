@@ -36,6 +36,7 @@ class _ContainerShowPage extends State<ContainerShowPage> {
       });
     }
   }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,8 +55,9 @@ class _ContainerShowPage extends State<ContainerShowPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ContainerEditPage(_con_id)),
-                );
+                      builder: (context) => ContainerEditPage(_con_id))).then((value) async {
+                    await getData();
+              });
               },
               icon: Icon(
                 Icons.create_rounded,
