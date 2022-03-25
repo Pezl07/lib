@@ -141,7 +141,6 @@ class _ServiceEditPage extends State<ServiceEditPage> {
     }
   }
 
-
   Future delete() async {
     var url = Uri.http(
         '10.0.2.2:80', 'code_team4/public/Flutter_service/delete/$_ser_id');
@@ -166,6 +165,18 @@ class _ServiceEditPage extends State<ServiceEditPage> {
         departure_location.text = service['ser_departure_location'];
       });
     }
+  }
+
+  Future<void> update() async {
+    var url = Uri.http('10.0.2.2:80', '/code_team4/public/Flutter_service/update');
+
+    Map<String, String> header = {'Accept': 'application/json', 'Content-Type': 'application/json'};
+    String jsondata =
+        '{"ser_id":"$_ser_id", "ser_car_id_in": "$selected_car_id_import", "ser_dri_id_in":"$selected_dri_id_import", "ser_dri_id_out":"$selected_dri_id_export", "ser_car_id_out":"$selected_car_id_export", "ser_arrivals_location":"${arrival_location.text}", "ser_departure_location":"${departure_location.text}", "ser_weight":"${current_weight.text}", "ser_con_id": "$selected_con_id", "ser_stac_id": "1", "ser_cus_id": "$selected_cus_id" }';
+    print(jsondata);
+    var response = await http.post(url, headers: header, body: jsondata);
+    print('------result-------');
+    print(response.body);
   }
 
   @override
@@ -412,56 +423,56 @@ class _ServiceEditPage extends State<ServiceEditPage> {
           ),
 
           const Divider(),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Customer')),
-                Center(
-                  child: Container(
-                    height: 40,
-                    width: 190,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2(
-                        hint: Text(
-                          'Customer',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
-                          ),
-                        ),
-                        items: cus_company_name_string
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: selected_cus_company_name,
-                        onChanged: (value) {
-                          setState(() {
-                            selected_cus_company_name = value as String;
-                            for (int i = 0; i < customer.length; i++) {
-                              if (cus_company_name_string[i] == selected_cus_company_name) {
-                                selected_cus_id = cus_id_string[i];
-                                break;
-                              }
-                            }
-                          });
-                        },
-                        buttonHeight: 40,
-                        buttonWidth: 140,
-                        itemHeight: 40,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // ListTile(
+          //   title: Row(
+          //     children: <Widget>[
+          //       Expanded(child: Text('Customer')),
+          //       Center(
+          //         child: Container(
+          //           height: 40,
+          //           width: 190,
+          //           child: DropdownButtonHideUnderline(
+          //             child: DropdownButton2(
+          //               hint: Text(
+          //                 'Customer',
+          //                 style: TextStyle(
+          //                   fontSize: 14,
+          //                   color: Theme.of(context).hintColor,
+          //                 ),
+          //               ),
+          //               items: cus_company_name_string
+          //                   .map((item) => DropdownMenuItem<String>(
+          //                         value: item,
+          //                         child: Text(
+          //                           item,
+          //                           style: const TextStyle(
+          //                             fontSize: 14,
+          //                           ),
+          //                         ),
+          //                       ))
+          //                   .toList(),
+          //               value: selected_cus_company_name,
+          //               onChanged: (value) {
+          //                 setState(() {
+          //                   selected_cus_company_name = value as String;
+          //                   for (int i = 0; i < customer.length; i++) {
+          //                     if (cus_company_name_string[i] == selected_cus_company_name) {
+          //                       selected_cus_id = cus_id_string[i];
+          //                       break;
+          //                     }
+          //                   }
+          //                 });
+          //               },
+          //               buttonHeight: 40,
+          //               buttonWidth: 140,
+          //               itemHeight: 40,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
 
           ListTile(
             title: Row(
@@ -644,6 +655,8 @@ class _ServiceEditPage extends State<ServiceEditPage> {
                 print('ser_departure_date : $testdate $date');
                 print('ser_id : $_ser_id');
                 print('ser_weight : ${current_weight.text}');
+
+                update();
               },
             ),
           ),

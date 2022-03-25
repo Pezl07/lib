@@ -118,7 +118,6 @@ class _AddServicePageState extends State<AddServicePage> {
           customer_id.add(customer[i]['cus_id']);
           items_customer.add(customer[i]['cus_company_name']);
         }
-        // print(customer_id);
       });
     }
   }
