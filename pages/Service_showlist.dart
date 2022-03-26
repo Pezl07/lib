@@ -22,7 +22,6 @@ class _ServiceShowListPageState extends State<ServiceShowListPage> {
   }
 
   Future<void> getData() async {
-    print('enter get data');
     var url = Uri.http('10.0.2.2:80', '/code_team4/public/Flutter_service/get_all');
     final response = await http.get(url);
     if (response.statusCode == 200) {
