@@ -1,6 +1,7 @@
 import 'package:cdms_flutter/pages/Service_show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:intl/intl.dart';
@@ -493,6 +494,8 @@ class _ServiceEditPage extends State<ServiceEditPage> {
                 Expanded(
                   child: TextField(
                       controller: current_weight,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
                       ),
                 ),
               ],

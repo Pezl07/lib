@@ -389,7 +389,7 @@ class _AddServicePageState extends State<AddServicePage> {
                           
                         ),
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.number,
                         // textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 14),
                       ),
@@ -505,18 +505,16 @@ keyboardType: TextInputType.number,
                       TextField(
                         controller: arrival_location,
                         decoration: InputDecoration(
-                            labelText: 'Arrivals location',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
+                          labelText: 'Arrivals location'
+                        ),
                         style: TextStyle(fontSize: 14),
                       ),
                       Divider(),
                       TextField(
                         controller: departure_location,
                         decoration: InputDecoration(
-                            labelText: 'Departure location',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
+                          labelText: 'Departure location'
+                        ),
                         style: TextStyle(fontSize: 14),
                       ),
                       Divider(),

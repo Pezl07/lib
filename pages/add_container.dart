@@ -1,6 +1,7 @@
 import 'package:accordion/accordion.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/services.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -165,9 +166,8 @@ class _AddContainerPageState extends State<AddContainerPage> {
                       TextField(
                         controller: con_number,
                         decoration: InputDecoration(
-                            labelText: 'Container number',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
+                          labelText: 'Container number',
+                        ),
                         style: TextStyle(fontSize: 14),
                       ),
                       Container(
@@ -266,37 +266,41 @@ class _AddContainerPageState extends State<AddContainerPage> {
                       Divider(),
                       TextField(
                         controller: con_max_weight,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            labelText: 'Max weight (t)',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
+                          labelText: 'Max weight (t)'
+                        ),
                         style: TextStyle(fontSize: 14),
                       ),
                       Divider(),
                       TextField(
                         controller: con_tare_weight,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            labelText: 'Tare weight (t)',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
+                          labelText: 'Tare weight (t)'
+                        ),
                         style: TextStyle(fontSize: 14),
                       ),
                       Divider(),
                       TextField(
                         controller: con_net_weight,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            labelText: 'Net weight (t)',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
+                          labelText: 'Net weight (t)'
+                        ),
                         style: TextStyle(fontSize: 14),
                       ),
                     Divider(),
                     TextField(
                         controller: con_cube,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            labelText: 'Cube (CBM)',
-                            border: OutlineInputBorder()),
-                        // textAlign: TextAlign.center,
+                            labelText: 'Cube (CBM)'
+                        ),
                         style: TextStyle(fontSize: 14),
                       ),
                     ],

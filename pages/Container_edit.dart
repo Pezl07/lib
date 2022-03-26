@@ -1,6 +1,7 @@
 import 'package:cdms_flutter/pages/Container_show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
@@ -357,6 +358,8 @@ class _ContainerEditPage extends State<ContainerEditPage> {
                 Expanded(
                   child: TextField(
                       controller: con_max_weight,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
                     ),
                 ),
               ],
@@ -370,11 +373,14 @@ class _ContainerEditPage extends State<ContainerEditPage> {
                 Expanded(
                   child: TextField(
                       controller: con_tare_weight,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
                     ),
                 ),
               ],
             ),
           ),
+          const Divider(),
           ListTile(
             title: Row(
               children: <Widget>[
@@ -382,6 +388,8 @@ class _ContainerEditPage extends State<ContainerEditPage> {
                 Expanded(
                   child: TextField(
                       controller: con_net_weight,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
                     ),
                 ),
               ],
@@ -395,6 +403,8 @@ class _ContainerEditPage extends State<ContainerEditPage> {
                 Expanded(
                   child: TextField(
                       controller: con_cube,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
                     ),
                 ),
               ],

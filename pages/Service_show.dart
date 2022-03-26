@@ -120,6 +120,18 @@ class _ServiceShowPage extends State<ServiceShowPage> {
             trailing: Text(service['cus_branch'] == null ? '${service['cus_company_name']}' : '${service['cus_company_name']} ${service['cus_branch']}',
                 style: TextStyle(fontSize: 16, color: Colors.grey)),
           ),
+          ListTile(
+            onTap: () {},
+            title: Text(
+              'Current weight (t)',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: Text(
+              '${service['ser_weight']}',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
+          ),
+          
           const Divider(
             color: Colors.black,
           ),
@@ -169,7 +181,7 @@ class _ServiceShowPage extends State<ServiceShowPage> {
               style: TextStyle(fontSize: 16),
             ),
             trailing: Text(
-              '${service['ser_departure_date']}',
+              (service['ser_departure_date'] == '0000-00-00 00:00:00' ? 'ยังไม่มีกำหนด' : '${service['ser_departure_date']}'),
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),

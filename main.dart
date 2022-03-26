@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                         String login_status = await login();
                         if (login_status == 'success') {
                           Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => ServiceShowListPage()
+                            builder: (context) => const MainPage()
                             )
                           );
                         } else {
