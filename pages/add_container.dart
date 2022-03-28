@@ -42,7 +42,7 @@ class _AddContainerPageState extends State<AddContainerPage> {
   TextEditingController con_net_weight = TextEditingController();
   TextEditingController con_cube = TextEditingController();
   final _headerStyle = const TextStyle(
-      color: Color(0xffffffff), fontSize: 15, fontWeight: FontWeight.bold);
+      color: Colors.black, fontSize: 25, fontWeight: FontWeight.normal);
 
   @override
   void initState() {
@@ -165,8 +165,14 @@ class _AddContainerPageState extends State<AddContainerPage> {
           children: [
             //Container information
             Accordion(
-                maxOpenSections: 1,
-                headerBackgroundColorOpened: Colors.black54,
+                maxOpenSections: 3,
+                headerBackgroundColorOpened: Colors.black26,
+                headerBackgroundColor: Color.fromARGB(255, 233, 233, 233),
+                headerBorderRadius: 0,
+                rightIcon: Icon(Icons.keyboard_arrow_down,
+                    color: Colors.black, size: 25),
+                contentBorderColor: Colors.white,
+                disableScrolling: true,
                 headerPadding:
                     const EdgeInsets.symmetric(vertical: 17, horizontal: 17),
                 children: [
