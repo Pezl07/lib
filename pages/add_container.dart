@@ -52,8 +52,9 @@ class _AddContainerPageState extends State<AddContainerPage> {
     getContainerType();
   }
 
-  Future<void> getContainerSize() async{
-    final response = await http.get(Uri.parse('http://10.0.2.2/code_team4/public/Flutter_size/get_all'));
+  Future<void> getContainerSize() async {
+    final response = await http.get(
+        Uri.parse('http://10.0.2.2/code_team4/public/Flutter_size/get_all'));
     if (response.statusCode == 200) {
       var result = utf8.decode(response.bodyBytes);
       setState(() {
@@ -69,8 +70,9 @@ class _AddContainerPageState extends State<AddContainerPage> {
     }
   }
 
-  Future<void> getAgent() async{
-    final response = await http.get(Uri.parse('http://10.0.2.2/code_team4/public/Flutter_agent/get_all'));
+  Future<void> getAgent() async {
+    final response = await http.get(
+        Uri.parse('http://10.0.2.2/code_team4/public/Flutter_agent/get_all'));
     if (response.statusCode == 200) {
       var result = utf8.decode(response.bodyBytes);
       setState(() {
@@ -83,8 +85,9 @@ class _AddContainerPageState extends State<AddContainerPage> {
     }
   }
 
-  Future<void> getContainerType() async{
-    final response = await http.get(Uri.parse('http://10.0.2.2/code_team4/public/Flutter_container_type/get_all'));
+  Future<void> getContainerType() async {
+    final response = await http.get(Uri.parse(
+        'http://10.0.2.2/code_team4/public/Flutter_container_type/get_all'));
     if (response.statusCode == 200) {
       var result = utf8.decode(response.bodyBytes);
       setState(() {
@@ -98,9 +101,13 @@ class _AddContainerPageState extends State<AddContainerPage> {
   }
 
   Future insert() async {
-    var url = Uri.http('10.0.2.2:80', '/code_team4/public/Flutter_container/insert');
+    var url =
+        Uri.http('10.0.2.2:80', '/code_team4/public/Flutter_container/insert');
 
-    Map<String, String> header = {'Accept': 'application/json', 'Content-Type': 'application/json'};
+    Map<String, String> header = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
     String jsondata =
         '{"con_number":"${con_number.text}", "con_max_weight": "${con_max_weight.text}", "con_tare_weight": "${con_tare_weight.text}", "con_net_weight":"${con_net_weight.text}", "con_cube":"${con_cube.text}", "con_size_id":"$selected_size_id", "con_cont_id":"$selected_cont_id", "con_agn_id":"$selected_agn_id", "con_stac_id":"4"}';
     print(jsondata);
@@ -108,6 +115,7 @@ class _AddContainerPageState extends State<AddContainerPage> {
     // print('------result-------');
     // print(response.body);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,16 +132,16 @@ class _AddContainerPageState extends State<AddContainerPage> {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-                // print('-----------');
-                // print('con_number: ${con_number.text}');
-                // print('cont_id: $selected_cont_id');
-                // print('agn_id: $selected_agn_id');
-                // print('con_max_weight: ${con_max_weight.text}');
-                // print('con_tare_weight: ${con_tare_weight.text}');
-                // print('con_net_weight: ${con_net_weight.text}');
-                // print('con_cube: ${con_cube.text}');
-                // print('size_id: $selected_size_id');
-                insert().then((value) => Navigator.pop(context));
+              // print('-----------');
+              // print('con_number: ${con_number.text}');
+              // print('cont_id: $selected_cont_id');
+              // print('agn_id: $selected_agn_id');
+              // print('con_max_weight: ${con_max_weight.text}');
+              // print('con_tare_weight: ${con_tare_weight.text}');
+              // print('con_net_weight: ${con_net_weight.text}');
+              // print('con_cube: ${con_cube.text}');
+              // print('size_id: $selected_size_id');
+              insert().then((value) => Navigator.pop(context));
             },
             child: Text(
               'SAVE',
@@ -143,34 +151,44 @@ class _AddContainerPageState extends State<AddContainerPage> {
         ],
         backgroundColor: Color.fromARGB(255, 1, 0, 73),
       ),
-      body: ListView(
-        children: [
-          //Container information
-          Accordion(
-              maxOpenSections: 1,
-              headerBackgroundColorOpened: Colors.black54,
-              headerPadding:
-                  const EdgeInsets.symmetric(vertical: 17, horizontal: 17),
-              children: [
-                AccordionSection(
-                  isOpen: false,
-                  // leftIcon: const Icon(Icons.computer, color: Colors.white),
-                  header: Text(
-                    'Container information',
-                    style: _headerStyle,
-                  ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.05), BlendMode.dstATop),
+            image: NetworkImage(
+                'https://raw.githubusercontent.com/wirat0155/code_team4/New-UI/public/upload/BCDMS_Logo.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: ListView(
+          children: [
+            //Container information
+            Accordion(
+                maxOpenSections: 1,
+                headerBackgroundColorOpened: Colors.black54,
+                headerPadding:
+                    const EdgeInsets.symmetric(vertical: 17, horizontal: 17),
+                children: [
+                  AccordionSection(
+                    isOpen: false,
+                    // leftIcon: const Icon(Icons.computer, color: Colors.white),
+                    header: Text(
+                      'Container information',
+                      style: _headerStyle,
+                    ),
 
-                  content: Column(
-                    children: [
-                      Divider(),
-                      TextField(
-                        controller: con_number,
-                        decoration: InputDecoration(
-                          labelText: 'Container number',
+                    content: Column(
+                      children: [
+                        Divider(),
+                        TextField(
+                          controller: con_number,
+                          decoration: InputDecoration(
+                            labelText: 'Container number',
+                          ),
+                          style: TextStyle(fontSize: 14),
                         ),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      Container(
+                        Container(
                           height: 40,
                           width: 460,
                           child: DropdownButtonHideUnderline(
@@ -197,10 +215,13 @@ class _AddContainerPageState extends State<AddContainerPage> {
                               onChanged: (value) {
                                 setState(() {
                                   selected_cont_name = value as String;
-                                  for (int i = 0; i < cont_name_string.length; i++) {
-                                    if (cont_name_string[i] == selected_cont_name) {
-                                        selected_cont_id = cont_id_string[i];
-                                        break;
+                                  for (int i = 0;
+                                      i < cont_name_string.length;
+                                      i++) {
+                                    if (cont_name_string[i] ==
+                                        selected_cont_name) {
+                                      selected_cont_id = cont_id_string[i];
+                                      break;
                                     }
                                   }
                                 });
@@ -211,7 +232,7 @@ class _AddContainerPageState extends State<AddContainerPage> {
                             ),
                           ),
                         ),
-                      Container(
+                        Container(
                           height: 40,
                           width: 460,
                           child: DropdownButtonHideUnderline(
@@ -238,10 +259,13 @@ class _AddContainerPageState extends State<AddContainerPage> {
                               onChanged: (value) {
                                 setState(() {
                                   selected_agn_company_name = value as String;
-                                  for (int i = 0; i < agn_company_name_string.length; i++) {
-                                    if (agn_company_name_string[i] == selected_agn_company_name) {
-                                        selected_agn_id = agn_id_string[i];
-                                        break;
+                                  for (int i = 0;
+                                      i < agn_company_name_string.length;
+                                      i++) {
+                                    if (agn_company_name_string[i] ==
+                                        selected_agn_company_name) {
+                                      selected_agn_id = agn_id_string[i];
+                                      break;
                                     }
                                   }
                                 });
@@ -252,137 +276,145 @@ class _AddContainerPageState extends State<AddContainerPage> {
                             ),
                           ),
                         ),
-
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                //Weight
-                AccordionSection(
-                  isOpen: false,
-                  // leftIcon: const Icon(Icons.computer, color: Colors.white),
-                  header: Text('Weight', style: _headerStyle),
-                  content: Column(
-                    children: [
-                      Divider(),
-                      TextField(
-                        controller: con_max_weight,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Max weight (t)'
+                  //Weight
+                  AccordionSection(
+                    isOpen: false,
+                    // leftIcon: const Icon(Icons.computer, color: Colors.white),
+                    header: Text('Weight', style: _headerStyle),
+                    content: Column(
+                      children: [
+                        Divider(),
+                        TextField(
+                          controller: con_max_weight,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'Max weight (t)'),
+                          style: TextStyle(fontSize: 14),
                         ),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      Divider(),
-                      TextField(
-                        controller: con_tare_weight,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Tare weight (t)'
+                        Divider(),
+                        TextField(
+                          controller: con_tare_weight,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'Tare weight (t)'),
+                          style: TextStyle(fontSize: 14),
                         ),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      Divider(),
-                      TextField(
-                        controller: con_net_weight,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Net weight (t)'
+                        Divider(),
+                        TextField(
+                          controller: con_net_weight,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'Net weight (t)'),
+                          style: TextStyle(fontSize: 14),
                         ),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    Divider(),
-                    TextField(
-                        controller: con_cube,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                            labelText: 'Cube (CBM)'
+                        Divider(),
+                        TextField(
+                          controller: con_cube,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'Cube (CBM)'),
+                          style: TextStyle(fontSize: 14),
                         ),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                //Size
-                AccordionSection(
-                  isOpen: false,
-                  // leftIcon: const Icon(Icons.computer, color: Colors.white),
-                  header: Text('Size', style: _headerStyle),
-                  content: Column(
-                    children: [
-                      Divider(),
-                      Center(
-                        child: Container(
-                          height: 40,
-                          width: 460,
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton2(
-                              hint: Text(
-                                'Container size',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Theme.of(context).hintColor,
+                  //Size
+                  AccordionSection(
+                    isOpen: false,
+                    // leftIcon: const Icon(Icons.computer, color: Colors.white),
+                    header: Text('Size', style: _headerStyle),
+                    content: Column(
+                      children: [
+                        Divider(),
+                        Center(
+                          child: Container(
+                            height: 40,
+                            width: 460,
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton2(
+                                hint: Text(
+                                  'Container size',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Theme.of(context).hintColor,
+                                  ),
                                 ),
-                              ),
-                              items: size_name_string
-                                  .map((item) => DropdownMenuItem<String>(
-                                        value: item,
-                                        child: Text(
-                                          item,
-                                          style: const TextStyle(
-                                            fontSize: 14,
+                                items: size_name_string
+                                    .map((item) => DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(
+                                            item,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                            ),
                                           ),
-                                        ),
-                                      ))
-                                  .toList(),
-                              value: selected_size_name,
-                              onChanged: (value) {
-                                setState(() {
-                                  selected_size_name = value as String;
-                                  for (int i = 0; i < size_name_string.length; i++) {
-                                    if (size_name_string[i] == selected_size_name) {
+                                        ))
+                                    .toList(),
+                                value: selected_size_name,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selected_size_name = value as String;
+                                    for (int i = 0;
+                                        i < size_name_string.length;
+                                        i++) {
+                                      if (size_name_string[i] ==
+                                          selected_size_name) {
                                         // ถูกหมด
                                         selected_size_id = size_id_string[i];
-                                        showed_width_string = size_width_string[i];
-                                        showed_length_string = size_length_string[i];
-                                        showed_height_string = size_height_string[i];
+                                        showed_width_string =
+                                            size_width_string[i];
+                                        showed_length_string =
+                                            size_length_string[i];
+                                        showed_height_string =
+                                            size_height_string[i];
                                         break;
+                                      }
                                     }
-                                  }
-                                });
-                              },
-                              buttonHeight: 40,
-                              buttonWidth: 140,
-                              itemHeight: 40,
+                                  });
+                                },
+                                buttonHeight: 40,
+                                buttonWidth: 140,
+                                itemHeight: 40,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                     
-                      Divider(),
-                      Text((showed_width_string ?? "Width (m)"),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      Divider(),
-                      Text((showed_length_string ?? "Length (m)"),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      Divider(),
-                      Text((showed_height_string ?? "height (m)"),
-                        style: TextStyle(fontSize: 14),
-                        
-                      ),
-                      Divider(),
-
-                    ],
-                  
+                        Divider(),
+                        Text(
+                          (showed_width_string ?? "Width (m)"),
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        Divider(),
+                        Text(
+                          (showed_length_string ?? "Length (m)"),
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        Divider(),
+                        Text(
+                          (showed_height_string ?? "height (m)"),
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        Divider(),
+                      ],
+                    ),
                   ),
-                ),
-              ]),
-        ],
+                ]),
+          ],
+        ),
       ),
     );
   }

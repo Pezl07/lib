@@ -114,173 +114,184 @@ class _ServiceShowPage extends State<ServiceShowPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: ListView(
-          children: <Widget>[
-            SizedBox(height: 30),
-            Center(
-              child: Text(
-                service['con_number'].toString(),
-                style: TextStyle(fontSize: 40),
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.05), BlendMode.dstATop),
+              image: NetworkImage(
+                  'https://raw.githubusercontent.com/wirat0155/code_team4/New-UI/public/upload/BCDMS_Logo.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: ListView(
+            children: <Widget>[
+              SizedBox(height: 30),
+              Center(
+                child: Text(
+                  service['con_number'].toString(),
+                  style: TextStyle(fontSize: 40),
+                ),
               ),
-            ),
-            SizedBox(height: 30),
-            ListTile(
-              onTap: () {},
-              title: Text('Container type', style: TextStyle(fontSize: 16)),
-              trailing: Text('${service['cont_name']}',
-                  style: TextStyle(fontSize: 16, color: Colors.grey)),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text('Customer', style: TextStyle(fontSize: 16)),
-              trailing: Text(
-                  service['cus_branch'] == null
-                      ? '${service['cus_company_name']}'
-                      : '${service['cus_company_name']} ${service['cus_branch']}',
-                  style: TextStyle(fontSize: 16, color: Colors.grey)),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Current weight (t)',
-                style: TextStyle(fontSize: 16),
+              SizedBox(height: 30),
+              ListTile(
+                onTap: () {},
+                title: Text('Container type', style: TextStyle(fontSize: 16)),
+                trailing: Text('${service['cont_name']}',
+                    style: TextStyle(fontSize: 16, color: Colors.grey)),
               ),
-              trailing: Text(
-                '${service['ser_weight']}',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text('Customer', style: TextStyle(fontSize: 16)),
+                trailing: Text(
+                    service['cus_branch'] == null
+                        ? '${service['cus_company_name']}'
+                        : '${service['cus_company_name']} ${service['cus_branch']}',
+                    style: TextStyle(fontSize: 16, color: Colors.grey)),
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'IMPORT',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Current weight (t)',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  '${service['ser_weight']}',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Importer',
-                style: TextStyle(fontSize: 16),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                '${_dri_in['dri_name']}',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'IMPORT',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text('Imported Car', style: TextStyle(fontSize: 16)),
-              trailing: Text('${_car_in['car_code']}',
-                  style: TextStyle(fontSize: 16, color: Colors.grey)),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Arrival Date',
-                style: TextStyle(fontSize: 16),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                '${service['ser_arrivals_date']}',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Importer',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  '${_dri_in['dri_name']}',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Cut-off Date',
-                style: TextStyle(fontSize: 16),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text('Imported Car', style: TextStyle(fontSize: 16)),
+                trailing: Text('${_car_in['car_code']}',
+                    style: TextStyle(fontSize: 16, color: Colors.grey)),
               ),
-              trailing: Text(
-                (service['ser_departure_date'] == '0000-00-00 00:00:00'
-                    ? 'ยังไม่มีกำหนด'
-                    : '${service['ser_departure_date']}'),
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Arrival Date',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  '${service['ser_arrivals_date']}',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'EXPORT',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Cut-off Date',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  (service['ser_departure_date'] == '0000-00-00 00:00:00'
+                      ? 'ยังไม่มีกำหนด'
+                      : '${service['ser_departure_date']}'),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Exporter',
-                style: TextStyle(fontSize: 16),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                '${_dri_out['dri_name']}',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'EXPORT',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Exported Car',
-                style: TextStyle(fontSize: 16),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                '${_car_out['car_code']}',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Exporter',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  '${_dri_out['dri_name']}',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'LOCATION',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Exported Car',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  '${_car_out['car_code']}',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Arrivals Location',
-                style: TextStyle(fontSize: 16),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                '${service['ser_arrivals_location']}',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'LOCATION',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Departure Location',
-                style: TextStyle(fontSize: 16),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                '${service['ser_departure_location']}',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Arrivals Location',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  '${service['ser_arrivals_location']}',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(),
-          ],
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Departure Location',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  '${service['ser_departure_location']}',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+              ),
+              const Divider(),
+            ],
+          ),
         ),
       ),
     );

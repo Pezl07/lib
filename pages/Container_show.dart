@@ -70,169 +70,180 @@ class _ContainerShowPage extends State<ContainerShowPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: ListView(
-          children: <Widget>[
-            SizedBox(height: 30),
-            Center(
-              child: Text(
-                container['con_number'].toString(),
-                style: TextStyle(fontSize: 40),
-              ),
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.05), BlendMode.dstATop),
+              image: NetworkImage(
+                  'https://raw.githubusercontent.com/wirat0155/code_team4/New-UI/public/upload/BCDMS_Logo.jpg'),
+              fit: BoxFit.cover,
             ),
-            SizedBox(height: 30),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'CONTAINER INFORMATION',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+          ),
+          child: ListView(
+            children: <Widget>[
+              SizedBox(height: 30),
+              Center(
+                child: Text(
+                  container['con_number'].toString(),
+                  style: TextStyle(fontSize: 40),
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Container',
-                style: TextStyle(fontSize: 16),
+              SizedBox(height: 30),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                container['con_number'].toString(),
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'CONTAINER INFORMATION',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text('Container Type', style: TextStyle(fontSize: 16)),
-              trailing: Text(container['cont_name'].toString(),
-                  style: TextStyle(fontSize: 16, color: Colors.grey)),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'WEIGHT',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              const Divider(
+                color: Colors.black,
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Max weight (t)',
-                style: TextStyle(fontSize: 16),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Container',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  container['con_number'].toString(),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-              trailing: Text(
-                container['con_max_weight'].toString(),
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text('Container Type', style: TextStyle(fontSize: 16)),
+                trailing: Text(container['cont_name'].toString(),
+                    style: TextStyle(fontSize: 16, color: Colors.grey)),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Tare weight (t)',
-                style: TextStyle(fontSize: 16),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                container['con_tare_weight'].toString(),
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'WEIGHT',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Net weight (t)',
-                style: TextStyle(fontSize: 16),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                container['con_net_weight'].toString(),
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Max weight (t)',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  container['con_max_weight'].toString(),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Cube (CBM)',
-                style: TextStyle(fontSize: 16),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Tare weight (t)',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  container['con_tare_weight'].toString(),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-              trailing: Text(
-                container['con_cube'].toString(),
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Net weight (t)',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  container['con_net_weight'].toString(),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'SIZE',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Cube (CBM)',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  container['con_cube'].toString(),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Container Size',
-                style: TextStyle(fontSize: 16),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                container['size_name'].toString(),
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'SIZE',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Width (m)',
-                style: TextStyle(fontSize: 16),
+              const Divider(
+                color: Colors.black,
               ),
-              trailing: Text(
-                container['size_width_out'].toString(),
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Container Size',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  container['size_name'].toString(),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Length (m)',
-                style: TextStyle(fontSize: 16),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Width (m)',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  container['size_width_out'].toString(),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-              trailing: Text(
-                container['size_length_out'].toString(),
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Length (m)',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  container['size_length_out'].toString(),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'Height (m)',
-                style: TextStyle(fontSize: 16),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'Height (m)',
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  container['size_height_out'].toString(),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
               ),
-              trailing: Text(
-                container['size_height_out'].toString(),
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-            ),
-            const Divider(),
-          ],
+              const Divider(),
+            ],
+          ),
         ),
       ),
     );

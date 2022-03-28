@@ -219,245 +219,69 @@ class _ContainerEditPage extends State<ContainerEditPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: ListView(
-          children: <Widget>[
-            SizedBox(height: 30),
-            Center(
-              child: Text(
-                'Edit container',
-                style: TextStyle(fontSize: 40),
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.05), BlendMode.dstATop),
+              image: NetworkImage(
+                  'https://raw.githubusercontent.com/wirat0155/code_team4/New-UI/public/upload/BCDMS_Logo.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: ListView(
+            children: <Widget>[
+              SizedBox(height: 30),
+              Center(
+                child: Text(
+                  'Edit container',
+                  style: TextStyle(fontSize: 40),
+                ),
               ),
-            ),
-            SizedBox(height: 30),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'CONTAINER INFORMATION',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              SizedBox(height: 30),
+              const Divider(
+                color: Colors.black,
               ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Container number')),
-                  Expanded(
-                    child: TextField(
-                      controller: con_number,
-                    ),
-                  ),
-                ],
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'CONTAINER INFORMATION',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Container type')),
-                  Container(
-                    height: 40,
-                    width: 190,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2(
-                        hint: Text(
-                          'Container type',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
-                          ),
-                        ),
-                        items: cont_name_string
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: selected_cont_name,
-                        onChanged: (value) {
-                          setState(() {
-                            selected_cont_name = value as String;
-                            for (int i = 0; i < cont_name_string.length; i++) {
-                              if (cont_name_string[i] == selected_cont_name) {
-                                selected_cont_id = cont_id_string[i];
-                                break;
-                              }
-                            }
-                          });
-                        },
-                        buttonHeight: 40,
-                        buttonWidth: 140,
-                        itemHeight: 40,
+              const Divider(
+                color: Colors.black,
+              ),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Container number')),
+                    Expanded(
+                      child: TextField(
+                        controller: con_number,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Agent')),
-                  Container(
-                    height: 40,
-                    width: 190,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2(
-                        hint: Text(
-                          'Agent',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
-                          ),
-                        ),
-                        items: agn_company_name_string
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: selected_agn_company_name,
-                        onChanged: (value) {
-                          setState(() {
-                            selected_agn_company_name = value as String;
-                            for (int i = 0;
-                                i < agn_company_name_string.length;
-                                i++) {
-                              if (agn_company_name_string[i] ==
-                                  selected_agn_company_name) {
-                                selected_agn_id = agn_id_string[i];
-                                break;
-                              }
-                            }
-                          });
-                        },
-                        buttonHeight: 40,
-                        buttonWidth: 140,
-                        itemHeight: 40,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'WEIGHT',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Max Weight(t)')),
-                  Expanded(
-                    child: TextField(
-                      controller: con_max_weight,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      keyboardType: TextInputType.number,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Tare Weight(t)')),
-                  Expanded(
-                    child: TextField(
-                      controller: con_tare_weight,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      keyboardType: TextInputType.number,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Net Weight(t)')),
-                  Expanded(
-                    child: TextField(
-                      controller: con_net_weight,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      keyboardType: TextInputType.number,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Cube (CBM)')),
-                  Expanded(
-                    child: TextField(
-                      controller: con_cube,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      keyboardType: TextInputType.number,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(
-                'SIZE',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Container Size')),
-                  Center(
-                    child: Container(
+              const Divider(),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Container type')),
+                    Container(
                       height: 40,
                       width: 190,
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton2(
                           hint: Text(
-                            'Container size',
+                            'Container type',
                             style: TextStyle(
                               fontSize: 14,
                               color: Theme.of(context).hintColor,
                             ),
                           ),
-                          items: size_name_string
+                          items: cont_name_string
                               .map((item) => DropdownMenuItem<String>(
                                     value: item,
                                     child: Text(
@@ -468,19 +292,15 @@ class _ContainerEditPage extends State<ContainerEditPage> {
                                     ),
                                   ))
                               .toList(),
-                          value: selected_size_name,
+                          value: selected_cont_name,
                           onChanged: (value) {
                             setState(() {
-                              selected_size_name = value as String;
+                              selected_cont_name = value as String;
                               for (int i = 0;
-                                  i < size_name_string.length;
+                                  i < cont_name_string.length;
                                   i++) {
-                                if (size_name_string[i] == selected_size_name) {
-                                  // ถูกหมด
-                                  selected_size_id = size_id_string[i];
-                                  showed_width_string = size_width_string[i];
-                                  showed_length_string = size_length_string[i];
-                                  showed_height_string = size_height_string[i];
+                                if (cont_name_string[i] == selected_cont_name) {
+                                  selected_cont_id = cont_id_string[i];
                                   break;
                                 }
                               }
@@ -492,66 +312,270 @@ class _ContainerEditPage extends State<ContainerEditPage> {
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Width (m)')),
-                  Expanded(
-                    child: Text('$showed_width_string'),
-                  ),
-                ],
+              const Divider(),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Agent')),
+                    Container(
+                      height: 40,
+                      width: 190,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton2(
+                          hint: Text(
+                            'Agent',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).hintColor,
+                            ),
+                          ),
+                          items: agn_company_name_string
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ))
+                              .toList(),
+                          value: selected_agn_company_name,
+                          onChanged: (value) {
+                            setState(() {
+                              selected_agn_company_name = value as String;
+                              for (int i = 0;
+                                  i < agn_company_name_string.length;
+                                  i++) {
+                                if (agn_company_name_string[i] ==
+                                    selected_agn_company_name) {
+                                  selected_agn_id = agn_id_string[i];
+                                  break;
+                                }
+                              }
+                            });
+                          },
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          itemHeight: 40,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const Divider(),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Length (m)')),
-                  Expanded(
-                    child: Text('$showed_length_string'),
-                  ),
-                ],
+              const Divider(
+                color: Colors.black,
               ),
-            ),
-            const Divider(),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Expanded(child: Text('Height(m)')),
-                  Expanded(
-                    child: Text('$showed_height_string'),
-                  ),
-                ],
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'WEIGHT',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
-            const Divider(),
-            SizedBox(height: 30),
-            SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                child: Text('Confirm'),
-                onPressed: () {
-                  // ถูกหมด
-                  // print('-----------');
-                  // print('con_number: ${con_number.text}');
-                  // print('cont_id: $selected_cont_id');
-                  // print('agn_id: $selected_agn_id');
-                  // print('con_max_weight: ${con_max_weight.text}');
-                  // print('con_tare_weight: ${con_tare_weight.text}');
-                  // print('con_net_weight: ${con_net_weight.text}');
-                  // print('con_cube: ${con_cube.text}');
-                  // print('size_id: $selected_size_id');
+              const Divider(
+                color: Colors.black,
+              ),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Max Weight(t)')),
+                    Expanded(
+                      child: TextField(
+                        controller: con_max_weight,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Tare Weight(t)')),
+                    Expanded(
+                      child: TextField(
+                        controller: con_tare_weight,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Net Weight(t)')),
+                    Expanded(
+                      child: TextField(
+                        controller: con_net_weight,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Cube (CBM)')),
+                    Expanded(
+                      child: TextField(
+                        controller: con_cube,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(
+                color: Colors.black,
+              ),
+              ListTile(
+                onTap: () {},
+                title: Text(
+                  'SIZE',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+              ),
+              const Divider(
+                color: Colors.black,
+              ),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Container Size')),
+                    Center(
+                      child: Container(
+                        height: 40,
+                        width: 190,
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton2(
+                            hint: Text(
+                              'Container size',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Theme.of(context).hintColor,
+                              ),
+                            ),
+                            items: size_name_string
+                                .map((item) => DropdownMenuItem<String>(
+                                      value: item,
+                                      child: Text(
+                                        item,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ))
+                                .toList(),
+                            value: selected_size_name,
+                            onChanged: (value) {
+                              setState(() {
+                                selected_size_name = value as String;
+                                for (int i = 0;
+                                    i < size_name_string.length;
+                                    i++) {
+                                  if (size_name_string[i] ==
+                                      selected_size_name) {
+                                    // ถูกหมด
+                                    selected_size_id = size_id_string[i];
+                                    showed_width_string = size_width_string[i];
+                                    showed_length_string =
+                                        size_length_string[i];
+                                    showed_height_string =
+                                        size_height_string[i];
+                                    break;
+                                  }
+                                }
+                              });
+                            },
+                            buttonHeight: 40,
+                            buttonWidth: 140,
+                            itemHeight: 40,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Width (m)')),
+                    Expanded(
+                      child: Text('$showed_width_string'),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Length (m)')),
+                    Expanded(
+                      child: Text('$showed_length_string'),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(child: Text('Height(m)')),
+                    Expanded(
+                      child: Text('$showed_height_string'),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(),
+              SizedBox(height: 30),
+              SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                  child: Text('Confirm'),
+                  onPressed: () {
+                    // ถูกหมด
+                    // print('-----------');
+                    // print('con_number: ${con_number.text}');
+                    // print('cont_id: $selected_cont_id');
+                    // print('agn_id: $selected_agn_id');
+                    // print('con_max_weight: ${con_max_weight.text}');
+                    // print('con_tare_weight: ${con_tare_weight.text}');
+                    // print('con_net_weight: ${con_net_weight.text}');
+                    // print('con_cube: ${con_cube.text}');
+                    // print('size_id: $selected_size_id');
 
-                  update().then((value) => Navigator.pop(context));
-                },
+                    update().then((value) => Navigator.pop(context));
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
