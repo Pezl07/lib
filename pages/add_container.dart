@@ -194,6 +194,7 @@ class _AddContainerPageState extends State<AddContainerPage> {
                           ),
                           style: TextStyle(fontSize: 14),
                         ),
+                        Divider(),
                         Container(
                           height: 40,
                           width: 460,
@@ -238,6 +239,7 @@ class _AddContainerPageState extends State<AddContainerPage> {
                             ),
                           ),
                         ),
+                        Divider(),
                         Container(
                           height: 40,
                           width: 460,
@@ -282,6 +284,7 @@ class _AddContainerPageState extends State<AddContainerPage> {
                             ),
                           ),
                         ),
+                        Divider(),
                       ],
                     ),
                   ),
