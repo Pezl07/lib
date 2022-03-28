@@ -13,7 +13,8 @@ class ServiceEditPage extends StatefulWidget {
   final ser_id;
   final ser_arrivals_date;
   final ser_departure_date;
-  const ServiceEditPage(this.ser_id, this.ser_arrivals_date, this.ser_departure_date);
+  const ServiceEditPage(
+      this.ser_id, this.ser_arrivals_date, this.ser_departure_date);
 
   @override
   State<ServiceEditPage> createState() => _ServiceEditPage();
@@ -72,9 +73,10 @@ class _ServiceEditPage extends State<ServiceEditPage> {
     print(_ser_departure_date);
     getData();
   }
-  
-  Future<void> getContainer() async{
-    final response = await http.get(Uri.parse('http://10.0.2.2/code_team4/public/Flutter_container/get_all/4/${service['ser_con_id']}'));
+
+  Future<void> getContainer() async {
+    final response = await http.get(Uri.parse(
+        'http://10.0.2.2/code_team4/public/Flutter_container/get_all/4/${service['ser_con_id']}'));
     if (response.statusCode == 200) {
       var result = utf8.decode(response.bodyBytes);
       setState(() {
@@ -88,8 +90,10 @@ class _ServiceEditPage extends State<ServiceEditPage> {
       });
     }
   }
-  Future<void> getCustomer() async{
-    final response = await http.get(Uri.parse('http://10.0.2.2/code_team4/public/Flutter_customer/get_all'));
+
+  Future<void> getCustomer() async {
+    final response = await http.get(Uri.parse(
+        'http://10.0.2.2/code_team4/public/Flutter_customer/get_all'));
     if (response.statusCode == 200) {
       var result = utf8.decode(response.bodyBytes);
       setState(() {
@@ -104,8 +108,9 @@ class _ServiceEditPage extends State<ServiceEditPage> {
     }
   }
 
-  Future<void> getDriver() async{
-    final response = await http.get(Uri.parse('http://10.0.2.2/code_team4/public/Flutter_driver/get_all'));
+  Future<void> getDriver() async {
+    final response = await http.get(
+        Uri.parse('http://10.0.2.2/code_team4/public/Flutter_driver/get_all'));
     if (response.statusCode == 200) {
       var result = utf8.decode(response.bodyBytes);
       setState(() {
@@ -127,15 +132,19 @@ class _ServiceEditPage extends State<ServiceEditPage> {
     }
   }
 
-  Future<void> getCar() async{
-    final response = await http.get(Uri.parse('http://10.0.2.2/code_team4/public/Flutter_driver/get_all'));
+  Future<void> getCar() async {
+    final response = await http.get(
+        Uri.parse('http://10.0.2.2/code_team4/public/Flutter_driver/get_all'));
     if (response.statusCode == 200) {
       var result = utf8.decode(response.bodyBytes);
       setState(() {
         car = jsonDecode(result);
         for (int i = 0; i < car.length; i++) {
           car_id_string.add(car[i]['car_id']);
-          car_name_string.add('รถคันที่ ' + car[i]['car_number'] + ' ทะเบียน ' +car[i]['car_code']);
+          car_name_string.add('รถคันที่ ' +
+              car[i]['car_number'] +
+              ' ทะเบียน ' +
+              car[i]['car_code']);
 
           if (car[i]['car_id'] == service['ser_car_id_in']) {
             selected_car_id_import = car[i]['car_id'];
@@ -159,7 +168,9 @@ class _ServiceEditPage extends State<ServiceEditPage> {
   }
 
   Future<void> getData() async {
-    final response = await http.get(Uri.parse('http://10.0.2.2/code_team4/public/Flutter_service/get_by_id/' + _ser_id.toString()));
+    final response = await http.get(Uri.parse(
+        'http://10.0.2.2/code_team4/public/Flutter_service/get_by_id/' +
+            _ser_id.toString()));
 
     if (response.statusCode == 200) {
       var result = utf8.decode(response.bodyBytes);
@@ -179,9 +190,13 @@ class _ServiceEditPage extends State<ServiceEditPage> {
   }
 
   Future<void> update() async {
-    var url = Uri.http('10.0.2.2:80', '/code_team4/public/Flutter_service/update');
+    var url =
+        Uri.http('10.0.2.2:80', '/code_team4/public/Flutter_service/update');
 
-    Map<String, String> header = {'Accept': 'application/json', 'Content-Type': 'application/json'};
+    Map<String, String> header = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
     String jsondata =
         '{"ser_id":"$_ser_id", "ser_car_id_in": "$selected_car_id_import", "ser_dri_id_in":"$selected_dri_id_import", "ser_dri_id_out":"$selected_dri_id_export", "ser_car_id_out":"$selected_car_id_export", "ser_arrivals_location":"${arrival_location.text}", "ser_departure_location":"${departure_location.text}", "ser_weight":"${current_weight.text}", "ser_con_id": "$selected_con_id", "ser_stac_id": "1", "ser_cus_id": "$selected_cus_id", "ser_arrivals_date":"$_ser_arrivals_date $date", "ser_departure_date": "$_ser_departure_date $date"}';
     print(jsondata);
@@ -195,7 +210,10 @@ class _ServiceEditPage extends State<ServiceEditPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () async {int count = 0; Navigator.of(context).popUntil((_)=> count++>= 1);},
+          onPressed: () async {
+            int count = 0;
+            Navigator.of(context).popUntil((_) => count++ >= 1);
+          },
           icon: Icon(Icons.arrow_back_ios),
         ),
         title: Text('SERVICE'),
@@ -204,7 +222,8 @@ class _ServiceEditPage extends State<ServiceEditPage> {
           IconButton(
               onPressed: () async {
                 int count = 0;
-                delete().then((value) => Navigator.of(context).popUntil((_)=> count++>= 2));
+                delete().then((value) =>
+                    Navigator.of(context).popUntil((_) => count++ >= 2));
               },
               icon: Icon(
                 Icons.auto_delete,
@@ -212,469 +231,481 @@ class _ServiceEditPage extends State<ServiceEditPage> {
               ))
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          Center(
-            child: Text(
-              'Edit service',
-              style: TextStyle(fontSize: 40),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: ListView(
+          children: <Widget>[
+            SizedBox(height: 30),
+            Center(
+              child: Text(
+                'Edit service',
+                style: TextStyle(fontSize: 40),
+              ),
             ),
-          ),
-          const Divider(
-            color: Colors.black,
-          ),
-          ListTile(
-            onTap: () {},
-            title: Text(
-              'IMPORT',
-              style: TextStyle(fontSize: 20, color: Colors.grey),
+            SizedBox(height: 30),
+            const Divider(
+              color: Colors.black,
             ),
-          ),
-          const Divider(
-            color: Colors.black,
-          ),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Import')),
-                Center(
-                  child: Container(
-                    height: 40,
-                    width: 190,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2(
-                        hint: Text(
-                          'Import',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
+            ListTile(
+              onTap: () {},
+              title: Text(
+                'IMPORT',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
+            ),
+            const Divider(
+              color: Colors.black,
+            ),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Import')),
+                  Center(
+                    child: Container(
+                      height: 40,
+                      width: 190,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton2(
+                          hint: Text(
+                            'Import',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).hintColor,
+                            ),
                           ),
-                        ),
-                        items: dri_name_string
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
+                          items: dri_name_string
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
                                     ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: selected_dri_name_import,
-                        onChanged: (value) {
-                          setState(() {
-                            selected_dri_name_import = value as String;
-                            for (int i = 0; i < dri_name_string.length; i++) {
-                              if (dri_name_string[i] == selected_dri_name_import) {
-                                selected_dri_id_import = dri_id_string[i];
-                                break;
+                                  ))
+                              .toList(),
+                          value: selected_dri_name_import,
+                          onChanged: (value) {
+                            setState(() {
+                              selected_dri_name_import = value as String;
+                              for (int i = 0; i < dri_name_string.length; i++) {
+                                if (dri_name_string[i] ==
+                                    selected_dri_name_import) {
+                                  selected_dri_id_import = dri_id_string[i];
+                                  break;
+                                }
                               }
-                            }
-                          });
-                        },
-                        buttonHeight: 40,
-                        buttonWidth: 140,
-                        itemHeight: 40,
+                            });
+                          },
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          itemHeight: 40,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const Divider(),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Imported Car')),
-                Center(
-                  child: Container(
-                    height: 40,
-                    width: 190,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2(
-                        hint: Text(
-                          'Imported car',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
+            const Divider(),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Imported Car')),
+                  Center(
+                    child: Container(
+                      height: 40,
+                      width: 190,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton2(
+                          hint: Text(
+                            'Imported car',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).hintColor,
+                            ),
                           ),
-                        ),
-                        items: car_name_string
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
+                          items: car_name_string
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
                                     ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: selected_car_name_import,
-                        onChanged: (value) {
-                          setState(() {
-                            selected_car_name_import = value as String;
-                            for (int i = 0; i < car_name_string.length; i++) {
-                              if (car_name_string[i] == selected_car_name_import) {
-                                selected_car_id_import = car_id_string[i];
-                                break;
+                                  ))
+                              .toList(),
+                          value: selected_car_name_import,
+                          onChanged: (value) {
+                            setState(() {
+                              selected_car_name_import = value as String;
+                              for (int i = 0; i < car_name_string.length; i++) {
+                                if (car_name_string[i] ==
+                                    selected_car_name_import) {
+                                  selected_car_id_import = car_id_string[i];
+                                  break;
+                                }
                               }
-                            }
-                          });
-                        },
-                        buttonHeight: 40,
-                        buttonWidth: 140,
-                        itemHeight: 40,
+                            });
+                          },
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          itemHeight: 40,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const Divider(),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Arrival Date')),
-                Expanded(
-                  child: DateTimePicker(
-                  initialValue: _ser_arrivals_date, 
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime(2100),
-                  dateLabelText: 'Arrivals date',
-                  style: TextStyle(
-                    fontSize: 14,
+            const Divider(),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Arrival Date')),
+                  Expanded(
+                    child: DateTimePicker(
+                      initialValue: _ser_arrivals_date,
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2100),
+                      dateLabelText: 'Arrivals date',
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                      onChanged: (val) {
+                        setState(() {
+                          _ser_arrivals_date = val.toString();
+                        });
+                      },
+                    ),
                   ),
-                  onChanged: (val) {
-                    setState(() {
-                      _ser_arrivals_date = val.toString();
-                    });
-                  },
-                ),
-                
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const Divider(),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Cut-off date')),
-                 Expanded(
-                  child: DateTimePicker(
-                  initialValue: _ser_departure_date,
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime(2100),
-                  dateLabelText: 'Cut-off date',
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
-                  onChanged: (val) {
-                    setState(() {
-                      _ser_departure_date = val.toString();
-                    });
-                  },
-                ),
-              )],
+            const Divider(),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Cut-off date')),
+                  Expanded(
+                    child: DateTimePicker(
+                      initialValue: _ser_departure_date,
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2100),
+                      dateLabelText: 'Cut-off date',
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                      onChanged: (val) {
+                        setState(() {
+                          _ser_departure_date = val.toString();
+                        });
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
 
-          const Divider(),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Container')),
-                Center(
-                  child: Container(
-                    height: 40,
-                    width: 190,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2(
-                        hint: Text(
-                          'Container',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
+            const Divider(),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Container')),
+                  Center(
+                    child: Container(
+                      height: 40,
+                      width: 190,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton2(
+                          hint: Text(
+                            'Container',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).hintColor,
+                            ),
                           ),
-                        ),
-                        items: con_number_string
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
+                          items: con_number_string
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
                                     ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: selected_con_number,
-                        onChanged: (value) {
-                          setState(() {
-                            selected_con_number = value as String;
-                            for (int i = 0; i < container.length; i++) {
-                              if (con_number_string[i] == selected_con_number) {
-                                selected_con_id = con_id_string[i];
-                                break;
+                                  ))
+                              .toList(),
+                          value: selected_con_number,
+                          onChanged: (value) {
+                            setState(() {
+                              selected_con_number = value as String;
+                              for (int i = 0; i < container.length; i++) {
+                                if (con_number_string[i] ==
+                                    selected_con_number) {
+                                  selected_con_id = con_id_string[i];
+                                  break;
+                                }
                               }
-                            }
-                          });
-                        },
-                        buttonHeight: 40,
-                        buttonWidth: 140,
-                        itemHeight: 40,
+                            });
+                          },
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          itemHeight: 40,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
 
-          const Divider(),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Customer')),
-                Center(
-                  child: Container(
-                    height: 40,
-                    width: 190,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2(
-                        hint: Text(
-                          'Customer',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
+            const Divider(),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Customer')),
+                  Center(
+                    child: Container(
+                      height: 40,
+                      width: 190,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton2(
+                          hint: Text(
+                            'Customer',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).hintColor,
+                            ),
                           ),
-                        ),
-                        items: cus_company_name_string
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
+                          items: cus_company_name_string
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
                                     ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: selected_cus_company_name,
-                        onChanged: (value) {
-                          setState(() {
-                            selected_cus_company_name = value as String;
-                            for (int i = 0; i < customer.length; i++) {
-                              if (cus_company_name_string[i] == selected_cus_company_name) {
-                                selected_cus_id = cus_id_string[i];
-                                break;
+                                  ))
+                              .toList(),
+                          value: selected_cus_company_name,
+                          onChanged: (value) {
+                            setState(() {
+                              selected_cus_company_name = value as String;
+                              for (int i = 0; i < customer.length; i++) {
+                                if (cus_company_name_string[i] ==
+                                    selected_cus_company_name) {
+                                  selected_cus_id = cus_id_string[i];
+                                  break;
+                                }
                               }
-                            }
-                          });
-                        },
-                        buttonHeight: 40,
-                        buttonWidth: 140,
-                        itemHeight: 40,
+                            });
+                          },
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          itemHeight: 40,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
 
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Current weight')),
-                Expanded(
-                  child: TextField(
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Current weight')),
+                  Expanded(
+                    child: TextField(
                       controller: current_weight,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       keyboardType: TextInputType.number,
-                      ),
-                ),
-              ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
 
-          const Divider(
-            color: Colors.black,
-          ),
-          ListTile(
-            onTap: () {},
-            title: Text(
-              'EXPORT',
-              style: TextStyle(fontSize: 20, color: Colors.grey),
+            const Divider(
+              color: Colors.black,
             ),
-          ),
-          const Divider(
-            color: Colors.black,
-          ),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Exporter')),
-                Center(
-                  child: Container(
-                    height: 40,
-                    width: 190,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2(
-                        hint: Text(
-                          'Exporter',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
+            ListTile(
+              onTap: () {},
+              title: Text(
+                'EXPORT',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
+            ),
+            const Divider(
+              color: Colors.black,
+            ),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Exporter')),
+                  Center(
+                    child: Container(
+                      height: 40,
+                      width: 190,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton2(
+                          hint: Text(
+                            'Exporter',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).hintColor,
+                            ),
                           ),
-                        ),
-                        items: dri_name_string
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
+                          items: dri_name_string
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
                                     ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: selected_dri_name_export,
-                        onChanged: (value) {
-                          setState(() {
-                            selected_dri_name_export = value as String;
-                            for (int i = 0; i < dri_name_string.length; i++) {
-                              if (dri_name_string[i] == selected_dri_name_export) {
-                                selected_dri_id_export = dri_id_string[i];
-                                break;
+                                  ))
+                              .toList(),
+                          value: selected_dri_name_export,
+                          onChanged: (value) {
+                            setState(() {
+                              selected_dri_name_export = value as String;
+                              for (int i = 0; i < dri_name_string.length; i++) {
+                                if (dri_name_string[i] ==
+                                    selected_dri_name_export) {
+                                  selected_dri_id_export = dri_id_string[i];
+                                  break;
+                                }
                               }
-                            }
-                          });
-                        },
-                        buttonHeight: 40,
-                        buttonWidth: 140,
-                        itemHeight: 40,
+                            });
+                          },
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          itemHeight: 40,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const Divider(),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Exported Car')),
-                Center(
-                  child: Container(
-                    height: 40,
-                    width: 190,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2(
-                        hint: Text(
-                          'Exporter car',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
+            const Divider(),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Exported Car')),
+                  Center(
+                    child: Container(
+                      height: 40,
+                      width: 190,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton2(
+                          hint: Text(
+                            'Exporter car',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).hintColor,
+                            ),
                           ),
-                        ),
-                        items: car_name_string
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
+                          items: car_name_string
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
                                     ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: selected_car_name_export,
-                        onChanged: (value) {
-                          setState(() {
-                            selected_car_name_export = value as String;
-                            for (int i = 0; i < car_name_string.length; i++) {
-                              if (car_name_string[i] == selected_car_name_export) {
-                                selected_car_id_export = car_id_string[i];
-                                break;
+                                  ))
+                              .toList(),
+                          value: selected_car_name_export,
+                          onChanged: (value) {
+                            setState(() {
+                              selected_car_name_export = value as String;
+                              for (int i = 0; i < car_name_string.length; i++) {
+                                if (car_name_string[i] ==
+                                    selected_car_name_export) {
+                                  selected_car_id_export = car_id_string[i];
+                                  break;
+                                }
                               }
-                            }
-                          });
-                        },
-                        buttonHeight: 40,
-                        buttonWidth: 140,
-                        itemHeight: 40,
+                            });
+                          },
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          itemHeight: 40,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const Divider(
-            color: Colors.black,
-          ),
-          ListTile(
-            onTap: () {},
-            title: Text(
-              'LOCATION',
-              style: TextStyle(fontSize: 20, color: Colors.grey),
+            const Divider(
+              color: Colors.black,
             ),
-          ),
-          const Divider(
-            color: Colors.black,
-          ),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Arrivals Location')),
-                Expanded(
-                  child: TextField(
+            ListTile(
+              onTap: () {},
+              title: Text(
+                'LOCATION',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
+            ),
+            const Divider(
+              color: Colors.black,
+            ),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Arrivals Location')),
+                  Expanded(
+                    child: TextField(
                       controller: arrival_location,
-                      ),
-                ),
-              ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Divider(),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(child: Text('Departure Location')),
-                Expanded(
-                  child: TextField(
+            const Divider(),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text('Departure Location')),
+                  Expanded(
+                    child: TextField(
                       controller: departure_location,
-                      ),
-                ),
-              ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          // const Divider(),
-          SizedBox(
-            height: 50,
-            child: ElevatedButton(
-              child: Text('Confirm'),
-              onPressed: () {
-                // print('--------------');
-                // print('ser_dri_id_in : $selected_dri_id_import');
-                // print('ser_dri_id_out : $selected_dri_id_export');
-                // print('ser_con_id : $selected_con_id');
-                // print('ser_car_id_in : $selected_car_id_import');
-                // print('ser_car_id_out : $selected_car_id_export');
-                // print('ser_arrivals_date : $_ser_arrivals_date $date');
-                // print('ser_departure_date : $_ser_departure_date $date');
-                // print('ser_id : $_ser_id');
-                // print('ser_weight : ${current_weight.text}');
-                update().then((value) =>  Navigator.pop(context));
-              },
+            // const Divider(),
+            SizedBox(height: 30),
+            SizedBox(
+              height: 50,
+              child: ElevatedButton(
+                child: Text('Confirm'),
+                onPressed: () {
+                  // print('--------------');
+                  // print('ser_dri_id_in : $selected_dri_id_import');
+                  // print('ser_dri_id_out : $selected_dri_id_export');
+                  // print('ser_con_id : $selected_con_id');
+                  // print('ser_car_id_in : $selected_car_id_import');
+                  // print('ser_car_id_out : $selected_car_id_export');
+                  // print('ser_arrivals_date : $_ser_arrivals_date $date');
+                  // print('ser_departure_date : $_ser_departure_date $date');
+                  // print('ser_id : $_ser_id');
+                  // print('ser_weight : ${current_weight.text}');
+                  update().then((value) => Navigator.pop(context));
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
