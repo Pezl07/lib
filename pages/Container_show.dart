@@ -121,6 +121,13 @@ class _ContainerShowPage extends State<ContainerShowPage> {
                 trailing: Text(container['cont_name'].toString(),
                     style: TextStyle(fontSize: 16, color: Colors.grey)),
               ),
+              const Divider(),
+              ListTile(
+                onTap: () {},
+                title: Text('Agent', style: TextStyle(fontSize: 16)),
+                trailing: Text(container['agn_company_name'].toString(),
+                    style: TextStyle(fontSize: 16, color: Colors.grey)),
+              ),
               const Divider(
                 color: Colors.black,
               ),
