@@ -132,9 +132,8 @@ class _ServiceEditPage extends State<ServiceEditPage> {
     }
   }
 
-  Future<void> getCar() async {
-    final response = await http.get(
-        Uri.parse('http://10.0.2.2/code_team4/public/Flutter_driver/get_all'));
+  Future<void> getCar() async{
+    final response = await http.get(Uri.parse('http://10.0.2.2/code_team4/public/Flutter_car/get_all'));
     if (response.statusCode == 200) {
       var result = utf8.decode(response.bodyBytes);
       setState(() {

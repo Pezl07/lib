@@ -21,12 +21,28 @@ class _ServiceShowPage extends State<ServiceShowPage> {
   var service = <String, dynamic>{};
   String? ser_arrivals_date;
   String? ser_departure_date;
-
+  String? _ser_arrivals_date;
+  String? _ser_departure_date;
   @override
   void initState() {
     super.initState();
     _ser_id = widget.ser_id;
     getData();
+  }
+
+
+  String formatDate(date) {
+    var date_number = date.substring(8,10);
+    var month_num_string = date.substring(5,7);
+    var month_num;
+    if (month_num_string.substring(0,1) == '0') {
+      month_num = int.parse(month_num_string);
+    }
+    var year_number = date.substring(0,4);
+    List<String> month_list = [
+      'Jan','Feb','Mar','Apr','May','Jun','Jul','Aus','Sep','Oct','Nov','Dec'
+    ];
+    return date_number + " " + month_list[month_num - 1] + " " + year_number;
   }
 
   Future<void> getData() async {
@@ -40,11 +56,20 @@ class _ServiceShowPage extends State<ServiceShowPage> {
         service = jsonDecode(result);
         ser_arrivals_date = service['ser_arrivals_date'].substring(0, 10);
         ser_departure_date = service['ser_departure_date'].substring(0, 10);
+        
         getDriver(service['ser_dri_id_in'], 'in');
         getDriver(service['ser_dri_id_out'], 'out');
         getCar(service['ser_car_id_in'], 'in');
         getCar(service['ser_car_id_out'], 'out');
+        service['ser_arrivals_date'] = formatDate(service['ser_arrivals_date'].substring(0,10));
+
+        if (service['ser_departure_date'] == Null || service['ser_departure_date'] == '0000-00-00 00:00:00') {
+          service['ser_departure_date'] = "ยังไม่มีกำหนด";
+        } else {
+          service['ser_departure_date'] = formatDate(service['ser_departure_date'].substring(0,10));
+        }
       });
+
     }
   }
 
@@ -290,10 +315,9 @@ class _ServiceShowPage extends State<ServiceShowPage> {
                 ),
               ),
               const Divider(),
-            ],
-          ),
+            ]
         ),
       ),
-    );
+    ));
   }
 }

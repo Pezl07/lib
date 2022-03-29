@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cdms_flutter/pages/Service_show.dart';
 import 'package:cdms_flutter/pages/add_service.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +16,26 @@ class ServiceShowListPage extends StatefulWidget {
 
 class _ServiceShowListPageState extends State<ServiceShowListPage> {
   List service = [];
+  List<dynamic> ser_departure_date = [];
 
   @override
   void initState() {
     super.initState();
     getData();
+  }
+
+  String formatDate(date) {
+    var date_number = date.substring(8,10);
+    var month_num_string = date.substring(5,7);
+    var month_num;
+    if (month_num_string.substring(0,1) == '0') {
+      month_num = int.parse(month_num_string);
+    }
+    var year_number = date.substring(0,4);
+    List<String> month_list = [
+      'Jan','Feb','Mar','Apr','May','Jun','Jul','Aus','Sep','Oct','Nov','Dec'
+    ];
+    return date_number + " " + month_list[month_num - 1] + " " + year_number;
   }
 
   Future<void> getData() async {
@@ -30,6 +47,15 @@ class _ServiceShowListPageState extends State<ServiceShowListPage> {
       setState(() {
         service = jsonDecode(result);
       });
+      ser_departure_date = [];
+      for (var i = 0; i < service.length; i++) {
+        if (service[i]['ser_departure_date'] == Null || service[i]['ser_departure_date'] == '0000-00-00 00:00:00') {
+          ser_departure_date.add("ยังไม่มีกำหนด");
+        } else {
+          ser_departure_date.add(formatDate(service[i]['ser_departure_date'].substring(0,10)));
+        }
+      }
+      print(ser_departure_date);
     }
   }
 
@@ -108,7 +134,7 @@ class _ServiceShowListPageState extends State<ServiceShowListPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    ServiceShowPage(service[index]['ser_id'])))
+                                    ServiceShowPage(service[index]['ser_id'], )))
                         .then((value) async {
                       await getData();
                     });
